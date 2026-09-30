@@ -1,482 +1,2254 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Patil Basana — Senior Sitecore / .NET Developer</title>
-<meta name="description" content="Senior Sitecore and .NET developer in Bengaluru: SXA, XP/XM, Solr search, upgrades, migrations, integrations.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root{
-  --ink:#16232B; --paper:#EDE7D8; --field:#F7F3E8; --line:#CFC6AE;
-  --brass:#8C6415; --brass-soft:#E4D3A8; --teal:#1F4A46; --teal-soft:#CFE1DD; --mute:#5B655F;
-  --serif:'Fraunces',Georgia,serif; --sans:'Public Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0a0f14">
+  <meta name="description" content="Basanagouda Patil — Senior Sitecore / Backend .NET Developer with 6+ years of experience in C#, ASP.NET MVC, .NET Core, Sitecore, Solr, search, APIs, integrations and Azure DevOps.">
+  <title>Basanagouda Patil | Senior Sitecore & .NET Developer</title>
+  <style>
+    :root{
+      --bg:#070b10; --surface:#0c1219; --surface2:#101923; --text:#edf4f2;
+      --muted:#9aa9aa; --line:#1d2a31; --accent:#66e3c4; --accent2:#79a7ff;
+      --warm:#e8b86b; --max:1180px; --radius:18px;
+      --sans:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      --mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+    body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 var(--sans);overflow-x:hidden}
+    a{color:inherit}
+    button{font:inherit}
+    .progress{position:fixed;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform-origin:left;transform:scaleX(0);z-index:100}
+    .noise{position:fixed;inset:0;pointer-events:none;opacity:.035;z-index:50;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E")}
+    .container{width:min(var(--max),calc(100% - 40px));margin:auto}
+    .nav{position:sticky;top:0;z-index:90;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(7,11,16,.82);backdrop-filter:blur(14px)}
+    .nav-inner{height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{font-weight:800;text-decoration:none;letter-spacing:-.03em}
+    .brand span{color:var(--accent)}
+    .nav-links{display:flex;gap:22px;align-items:center}
+    .nav-links a{font-size:14px;color:var(--muted);text-decoration:none}
+    .nav-links a:hover{color:var(--text)}
+    .menu{display:none;background:none;border:1px solid var(--line);color:var(--text);padding:8px 10px;border-radius:10px}
+    .hero{position:relative;min-height:calc(100vh - 68px);display:grid;place-items:center;overflow:hidden}
+    .hero:before{content:"";position:absolute;inset:-30%;background:
+      radial-gradient(circle at 65% 38%,rgba(102,227,196,.13),transparent 22%),
+      radial-gradient(circle at 22% 70%,rgba(121,167,255,.11),transparent 24%);
+      animation:drift 16s ease-in-out infinite alternate}
+    .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,#000,transparent 82%);opacity:.45}
+    @keyframes drift{to{transform:translate3d(3%,-2%,0) scale(1.04)}}
+    .hero-content{position:relative;z-index:2;padding:100px 0 90px;display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:center}
+    .eyebrow{display:inline-flex;gap:9px;align-items:center;padding:7px 11px;border:1px solid rgba(102,227,196,.22);border-radius:999px;background:rgba(102,227,196,.06);color:var(--accent);font:12px var(--mono);text-transform:uppercase;letter-spacing:.08em}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px rgba(102,227,196,.09);animation:pulse 1.8s infinite}
+    @keyframes pulse{50%{box-shadow:0 0 0 11px rgba(102,227,196,0)}}
+    h1{font-size:clamp(3.2rem,7vw,6.4rem);line-height:.94;letter-spacing:-.065em;margin:24px 0}
+    .gradient{background:linear-gradient(100deg,#fff 15%,var(--accent) 70%,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero p{max-width:680px;color:#b8c5c5;font-size:1.08rem}
+    .roles{font:14px var(--mono);color:var(--warm);min-height:24px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 17px;border-radius:11px;border:1px solid var(--line);text-decoration:none;font-weight:700;transition:transform .2s,border-color .2s,background .2s}
+    .btn:hover{transform:translateY(-2px);border-color:var(--accent)}
+    .btn.primary{background:var(--accent);color:#06110e;border-color:var(--accent)}
+    .terminal{background:linear-gradient(145deg,rgba(16,25,35,.94),rgba(7,11,16,.94));border:1px solid var(--line);border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,.35);overflow:hidden;transform:perspective(1000px) rotateY(-4deg);transition:transform .5s}
+    .terminal:hover{transform:perspective(1000px) rotateY(0deg) translateY(-5px)}
+    .terminal-bar{display:flex;gap:7px;padding:13px 16px;border-bottom:1px solid var(--line)}
+    .terminal-bar i{width:9px;height:9px;border-radius:50%;background:#43515a}
+    pre{margin:0;padding:24px;overflow:auto;font:13px/1.8 var(--mono);color:#c5d1d0}
+    .key{color:#79a7ff}.str{color:#66e3c4}.num{color:#e8b86b}.comment{color:#63757a}
+    section{padding:100px 0;border-top:1px solid var(--line)}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:38px}
+    .kicker{color:var(--accent);font:12px var(--mono);text-transform:uppercase;letter-spacing:.12em}
+    h2{font-size:clamp(2rem,4vw,3.4rem);letter-spacing:-.05em;line-height:1;margin:9px 0}
+    .section-head p{max-width:500px;color:var(--muted);margin:0}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+    .stat{padding:25px;background:var(--surface);border-right:1px solid var(--line)}
+    .stat:last-child{border-right:0}
+    .stat strong{display:block;font-size:2rem;letter-spacing:-.04em}.stat span{color:var(--muted);font-size:13px}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:25px;transition:transform .25s,border-color .25s,box-shadow .25s}
+    .card:hover{transform:translateY(-6px);border-color:rgba(102,227,196,.38);box-shadow:0 20px 50px rgba(0,0,0,.18)}
+    .icon{font-size:22px}.card h3{margin:12px 0 7px;font-size:1.1rem}.card p{margin:0;color:var(--muted);font-size:14px}
+    .tag-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}.tag{font:11px var(--mono);padding:5px 8px;border:1px solid var(--line);border-radius:7px;color:#b9c7c6;background:#0a1117}
+    .skill-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .skill{padding:18px;background:var(--surface);border:1px solid var(--line);border-radius:14px}
+    .skill-head{display:flex;justify-content:space-between;gap:10px;margin-bottom:12px}.skill-head b{font-size:14px}.skill-head span{font:11px var(--mono);color:var(--accent)}
+    .bar{height:5px;background:#18232b;border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;width:var(--w);background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px}
+    .case{display:grid;grid-template-columns:.8fr 1.2fr;gap:30px;padding:30px 0;border-bottom:1px solid var(--line)}
+    .case:last-child{border-bottom:0}.case-number{font:12px var(--mono);color:var(--accent)}.case h3{font-size:1.7rem;letter-spacing:-.03em;margin:8px 0 12px}.case p{color:var(--muted)}
+    .case-body{display:grid;grid-template-columns:1fr 1fr;gap:16px}.mini{padding:17px;background:var(--surface);border:1px solid var(--line);border-radius:13px}.mini b{font-size:12px;color:var(--warm);font-family:var(--mono)}.mini p{font-size:13px;margin:7px 0 0}
+    .timeline{position:relative}.timeline:before{content:"";position:absolute;left:7px;top:5px;bottom:5px;width:1px;background:var(--line)}
+    .job{position:relative;padding:0 0 35px 35px}.job:before{content:"";position:absolute;left:2px;top:7px;width:11px;height:11px;border:2px solid var(--accent);background:var(--bg);border-radius:50%}
+    .job-top{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.job h3{margin:0;font-size:1.25rem}.job time{font:12px var(--mono);color:var(--muted)}.job strong{display:block;color:var(--accent);font-size:13px;margin-top:3px}.job ul{color:var(--muted);padding-left:19px}.job li{margin:5px 0}
+    .arch{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}.arch:before{content:"";position:absolute;left:10%;right:10%;top:47px;height:1px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+    .arch-node{position:relative;z-index:2;text-align:center}.arch-node div{width:94px;height:94px;margin:auto;border-radius:50%;display:grid;place-items:center;background:var(--surface2);border:1px solid var(--line);box-shadow:0 0 0 8px var(--bg);font:12px var(--mono);transition:.25s}.arch-node:hover div{border-color:var(--accent);transform:translateY(-5px)}.arch-node p{font-size:12px;color:var(--muted);margin-top:13px}
+    .contact{background:linear-gradient(145deg,rgba(102,227,196,.08),rgba(121,167,255,.05));border:1px solid var(--line);border-radius:24px;padding:45px}
+    footer{padding:35px 0;color:var(--muted);font:12px var(--mono);display:flex;justify-content:space-between;gap:20px}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.in{opacity:1;transform:none}
+    .cursor-glow{position:fixed;z-index:1;width:240px;height:240px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(102,227,196,.08),transparent 68%);transform:translate(-50%,-50%);display:none}
+    @media(min-width:900px){.cursor-glow{display:block}}
+    @media(max-width:900px){.hero-content{grid-template-columns:1fr;gap:40px}.terminal{max-width:700px}.cards{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}.arch{grid-template-columns:1fr;gap:18px}.arch:before{left:50%;right:auto;top:0;bottom:0;width:1px;height:auto}.arch-node{display:flex;align-items:center;gap:20px;text-align:left}.arch-node div{margin:0;flex:none}.case{grid-template-columns:1fr}}
+    @media(max-width:680px){.container{width:min(var(--max),calc(100% - 28px))}.nav-links{display:none;position:absolute;top:68px;left:0;right:0;padding:16px;background:var(--surface);border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start}.nav-links.open{display:flex}.menu{display:block}.hero-content{padding:70px 0}.cards,.skill-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr}.stat{border-right:0;border-bottom:1px solid var(--line)}.stat:last-child{border-bottom:0}.case-body{grid-template-columns:1fr}.contact{padding:28px}footer{flex-direction:column}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.terminal{transform:none}}
+  .arch { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; position: relative; margin-top: 42px; } .arch-node { position: relative; min-height: 130px; padding: 22px 18px; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient( 145deg, rgba(255,255,255,.055), rgba(255,255,255,.015) ); backdrop-filter: blur(12px); overflow: hidden; transition: transform .45s cubic-bezier(.2,.8,.2,1), border-color .35s ease, box-shadow .35s ease, background .35s ease; animation: archFloat 5s ease-in-out infinite; } /* stagger the animation */ .arch-node:nth-child(2) { animation-delay: .25s; } .arch-node:nth-child(3) { animation-delay: .5s; } .arch-node:nth-child(4) { animation-delay: .75s; } .arch-node:nth-child(5) { animation-delay: 1s; } .arch-node:nth-child(6) { animation-delay: 1.25s; } .arch-node:nth-child(7) { animation-delay: 1.5s; } .arch-node:nth-child(8) { animation-delay: 1.75s; } .arch-node:nth-child(9) { animation-delay: 2s; } .arch-node:nth-child(10) { animation-delay: 2.25s; } .arch-node::before { content: ""; position: absolute; inset: -1px; background: linear-gradient( 120deg, transparent 20%, rgba(255,255,255,.08) 50%, transparent 80% ); transform: translateX(-120%); transition: transform .7s ease; } .arch-node:hover::before { transform: translateX(120%); } .arch-node:hover { transform: translateY(-9px) scale(1.025); border-color: var(--accent); box-shadow: 0 18px 45px rgba(0,0,0,.28), 0 0 25px rgba(255,255,255,.06); } .arch-node > div { position: relative; z-index: 1; font-size: 12px; font-weight: 800; letter-spacing: .16em; margin-bottom: 13px; } .arch-node p { position: relative; z-index: 1; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.65; } @keyframes archFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+  arch {
+  position: relative;
 }
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --ink:#EAE4D4; --paper:#0E1513; --field:#141F1D; --line:#2B3835;
-    --brass:#D2A44A; --brass-soft:#3A3114; --teal:#5FB3A6; --teal-soft:#16302B; --mute:#8FA097;
+
+.arch::before {
+  content: "";
+  position: absolute;
+  left: 3%;
+  right: 3%;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--line),
+    var(--accent),
+    var(--line),
+    transparent
+  );
+  z-index: 0;
+}
+
+.arch-node {
+  z-index: 1;
+}
+
+.arch-node::after {
+  content: "→";
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--accent);
+  font-size: 16px;
+  opacity: .7;
+}
+
+.arch-node:last-child::after {
+  display: none;
+}
+@media (max-width: 1100px) {
+  .arch {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .arch::before {
+    display: none;
+  }
+
+  .arch-node::after {
+    display: none;
   }
 }
-:root[data-theme="dark"]{
-  --ink:#EAE4D4; --paper:#0E1513; --field:#141F1D; --line:#2B3835;
-  --brass:#D2A44A; --brass-soft:#3A3114; --teal:#5FB3A6; --teal-soft:#16302B; --mute:#8FA097;
+
+@media (max-width: 700px) {
+  .arch {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .arch-node {
+    min-height: 115px;
+    padding: 18px 15px;
+  }
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.01ms !important;transition-duration:.01ms !important}}
-body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.65 var(--sans);transition:background .3s,color .3s}
-a{color:var(--teal)}
-h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;color:var(--ink)}
-.fld-label{font:13px/1.4 var(--sans);color:var(--mute);margin:0 0 5px}
-.chip{display:inline-block;font:12px/1.6 var(--mono);color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:3px;padding:2px 9px;margin:0 6px 6px 0;transition:opacity .2s}
-.chip.dim{opacity:.22}
 
-/* ribbon */
-.ribbon{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:16px;padding:10px 20px;background:var(--paper);border-bottom:1px solid var(--line)}
-.ribbon .path{font:12px var(--mono);color:var(--mute);overflow:auto;white-space:nowrap;flex:1;min-width:0}
-.ribbon input{font:13px var(--sans);border:1px solid var(--line);background:var(--field);color:var(--ink);border-radius:4px;padding:7px 10px;width:190px;max-width:36vw}
-.ribbon input::placeholder{color:var(--mute)}
-.tree-toggle{display:none;background:none;border:1px solid var(--line);color:var(--ink);border-radius:4px;padding:6px 10px;font:13px var(--sans);cursor:pointer}
-.theme-btn{background:none;border:1px solid var(--line);color:var(--ink);border-radius:4px;padding:6px 10px;font:16px var(--sans);cursor:pointer;line-height:1}
-
-/* hero band */
-.hero-band{position:relative;overflow:hidden;background:
-   radial-gradient(circle at 1px 1px, var(--line) 1px, transparent 0) 0 0/22px 22px,
-   var(--paper);
-  border-bottom:1px solid var(--line)}
-.hero-band::before,.hero-band::after{content:"";position:absolute;border-radius:50%;filter:blur(50px);pointer-events:none;z-index:0}
-.hero-band::before{width:520px;height:520px;background:radial-gradient(circle,var(--teal-soft) 0%,transparent 70%);top:-260px;right:-160px;opacity:.55;animation:floatA 20s ease-in-out infinite alternate}
-.hero-band::after{width:420px;height:420px;background:radial-gradient(circle,var(--brass-soft) 0%,transparent 70%);bottom:-220px;left:-120px;opacity:.5;animation:floatB 24s ease-in-out infinite alternate}
-@keyframes floatA{to{transform:translate(-50px,40px) scale(1.08)}}
-@keyframes floatB{to{transform:translate(40px,-30px) scale(1.05)}}
-.hero-inner{position:relative;z-index:1}
-.hero-inner{max-width:1180px;margin:0 auto;padding:54px 44px 44px;display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center}
-.id-badge{display:inline-flex;align-items:center;gap:6px;font:12px var(--mono);color:var(--teal);border:1px solid var(--line);border-radius:20px;padding:4px 12px;margin-bottom:18px;background:var(--field)}
-.id-badge b{color:var(--teal)}
-h1.name{font-size:clamp(2.1rem,5.4vw,3.3rem);letter-spacing:-.01em;line-height:1.05;opacity:0;transform:translateY(6px);animation:reveal .5s ease-out .1s forwards}
-.pulse-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--teal);animation:pulse 1.8s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.3)}}
-.role-type{font:14px var(--mono);color:var(--teal);margin:8px 0 0;min-height:18px}
-.role-type .caret{animation:blink 1s step-end infinite;color:var(--brass)}
-@keyframes blink{50%{opacity:0}}
-.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
-.reveal.in{opacity:1;transform:none}
-.ach-item{transition:transform .25s ease,box-shadow .25s ease}
-.ach-item:hover{transform:translateY(-3px);box-shadow:0 10px 24px -12px rgba(0,0,0,.25)}
-.job{transition:background .3s ease}
-.job:hover{background:var(--field)}
-@keyframes reveal{to{opacity:1;transform:none}}
-.lead{max-width:58ch;font-size:1.05rem;margin-top:16px;color:var(--ink)}
-.id-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:24px}
-.field{background:var(--field);border:1px solid var(--line);border-radius:5px;padding:12px 14px}
-.field .val{font-size:14.5px}
-.field .val a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
-.field .val a:hover{border-color:var(--teal);color:var(--teal)}
-
-/* pipeline diagram */
-.pipe-wrap{opacity:0;animation:reveal .6s ease-out .3s forwards;max-width:440px;margin:0 auto}
-.pipe-wrap svg{width:100%;height:auto;overflow:visible}
-.pipe-node rect{fill:var(--field);stroke:var(--line)}
-.pipe-node.hl rect{fill:var(--brass-soft);stroke:var(--brass)}
-.pipe-node text{fill:var(--ink);font:600 12px var(--sans)}
-.pipe-node.hl text{fill:var(--brass);font-family:var(--serif);font-weight:600;font-size:14px}
-.pipe-node .sub{fill:var(--mute);font:10px var(--mono);font-weight:400}
-.pipe-line{stroke:var(--line);stroke-width:2;fill:none;stroke-dasharray:8 6;animation:dash 26s linear infinite}
-@keyframes dash{to{stroke-dashoffset:-280}}
-.pipe-cap{fill:var(--mute)}
-
-/* layout */
-.shell{display:grid;grid-template-columns:250px minmax(0,1fr);max-width:1180px;margin:0 auto}
-nav.tree{padding:22px 10px 60px 22px;font:13px/2 var(--sans);border-right:1px solid var(--line);align-self:start;position:sticky;top:49px;max-height:calc(100vh - 49px);overflow:auto}
-nav.tree ul{list-style:none;margin:0;padding:0}
-nav.tree li{position:relative}
-nav.tree .lvl0>a{font-weight:600;font-family:var(--serif);font-size:15px}
-nav.tree .lvl1{padding-left:16px;border-left:1px solid var(--line);margin-left:5px}
-nav.tree .lvl2{padding-left:16px;border-left:1px solid var(--line);margin-left:5px;font-size:12.5px;color:var(--mute)}
-nav.tree a{display:block;color:var(--ink);text-decoration:none;padding:1px 6px;border-radius:3px;border-left:2px solid transparent}
-nav.tree .lvl2 a{color:var(--mute)}
-nav.tree a:hover,nav.tree a:focus-visible{background:var(--field)}
-nav.tree a.active{border-left:2px solid var(--brass);color:var(--brass);font-weight:600}
-nav.tree a:focus-visible{outline:2px solid var(--teal);outline-offset:1px}
-
-main{padding:40px 44px 90px;min-width:0}
-section{padding:44px 0;border-top:1px solid var(--line)}
-section:first-of-type{border-top:0;padding-top:0}
-.sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:22px}
-.sec-head h2{font-size:1.55rem}
-.sec-head .count{font:12px var(--mono);color:var(--mute)}
-
-/* achievements */
-.ach-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.ach-item{position:relative;background:var(--field);border:1px solid var(--line);border-radius:6px;padding:16px 18px 16px 44px;overflow:hidden}
-.ach-item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--cat,var(--teal))}
-.ach-item .ico{position:absolute;left:14px;top:16px;width:18px;height:18px;color:var(--cat,var(--teal))}
-.ach-item h3{font-size:1rem;font-family:var(--sans);font-weight:700;margin-bottom:6px}
-.ach-item p{margin:0;color:var(--mute);font-size:14px}
-
-/* skills */
-.sk-row{display:grid;grid-template-columns:190px 1fr;gap:18px;padding:13px 0;border-bottom:1px solid var(--line);align-items:start}
-.sk-row:first-child{border-top:1px solid var(--line)}
-.sk-row .fld-label{margin:0;display:flex;align-items:center;gap:8px}
-.sk-dot{width:9px;height:9px;border-radius:50%;background:var(--cat,var(--teal));display:inline-block;flex:none}
-
-/* jobs */
-.job{padding:26px 0;border-bottom:1px solid var(--line)}
-.job:last-child{border-bottom:0}
-.job-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:baseline;margin-bottom:14px}
-.job-head h3{font-size:1.3rem}
-.job-head .co{font-family:var(--sans);font-weight:600;color:var(--teal);font-size:15px}
-.job-head .dur{font:12px var(--mono);color:var(--mute)}
-.job ul{margin:0 0 14px;padding-left:20px}
-.job li{margin-bottom:6px;max-width:74ch}
-
-/* education / contact */
-.edu-item{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
-.edu-item:first-child{border-top:1px solid var(--line)}
-.edu-item .yr{color:var(--mute);font:13px var(--mono)}
-.contact-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
-.btn{padding:11px 20px;border:1px solid var(--ink);border-radius:5px;color:var(--ink);text-decoration:none;font-size:14px;font-weight:600}
-.btn.primary{background:var(--ink);color:var(--paper)}
-footer{padding:30px 0 0;color:var(--mute);font:12px var(--mono)}
-
-@media (max-width:940px){
-  .hero-inner{grid-template-columns:1fr}
-  .pipe-wrap{order:-1;max-width:420px}
+@media (max-width: 480px) {
+  .arch {
+    grid-template-columns: 1fr;
+  }
 }
-@media (max-width:860px){
-  .shell{display:block}
-  .tree-toggle{display:inline-block}
-  nav.tree{position:fixed;top:49px;left:0;right:0;bottom:0;background:var(--paper);z-index:30;display:none;border-right:0}
-  nav.tree.open{display:block}
-  main{padding:28px 20px 70px}
-  .hero-inner{padding:36px 20px 30px}
-  .ach-grid{grid-template-columns:1fr}
-  .sk-row{grid-template-columns:1fr}
-  .ribbon input{width:110px}
+/* =========================================================
+   ARCHITECTURE SECTION
+   ========================================================= */
+
+.architecture-section {
+  position: relative;
+  padding: 110px 0;
+  overflow: hidden;
 }
-</style>
+
+
+/* =========================================================
+   BACKGROUND ATMOSPHERE
+   ========================================================= */
+
+.architecture-section::before {
+  content: "";
+
+  position: absolute;
+  width: 600px;
+  height: 600px;
+
+  top: 10%;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(110, 231, 255, .07),
+      transparent 68%
+    );
+
+  pointer-events: none;
+
+  animation: architectureAmbient 8s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.architecture-header {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  grid-template-columns: 1.35fr .65fr;
+
+  gap: 60px;
+
+  align-items: end;
+
+  margin-bottom: 55px;
+}
+
+.architecture-kicker {
+  margin-bottom: 15px;
+
+  color: #6ee7ff;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.architecture-heading h2 {
+  max-width: 850px;
+
+  margin: 0;
+
+  font-size: clamp(32px, 4vw, 60px);
+
+  line-height: 1.05;
+  letter-spacing: -.045em;
+}
+
+.architecture-heading h2 span {
+  display: inline-block;
+
+  margin: 0 5px;
+
+  color: #6ee7ff;
+
+  animation: architectureArrow 2.5s ease-in-out infinite;
+}
+
+.architecture-intro {
+  max-width: 450px;
+
+  margin: 0;
+
+  color: rgba(255,255,255,.58);
+
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   ARCHITECTURE FLOW
+   ========================================================= */
+
+.architecture-flow {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns: repeat(5, 1fr);
+
+  gap: 16px;
+
+  z-index: 2;
+}
+
+
+/* Connecting line */
+
+.architecture-flow::before {
+  content: "";
+
+  position: absolute;
+
+  top: 50%;
+  left: 3%;
+  right: 3%;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(110,231,255,.35),
+      rgba(110,231,255,.7),
+      rgba(110,231,255,.35),
+      transparent
+    );
+
+  transform: translateY(-50%);
+
+  z-index: -1;
+
+  animation: architectureFlowLine 4s linear infinite;
+}
+
+
+/* =========================================================
+   ARCHITECTURE NODE
+   ========================================================= */
+
+.architecture-node {
+  position: relative;
+
+  min-height: 155px;
+
+  padding: 23px 20px;
+
+  border: 1px solid rgba(255,255,255,.09);
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.065),
+      rgba(255,255,255,.018)
+    );
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.18),
+    inset 0 1px 0 rgba(255,255,255,.06);
+
+  overflow: hidden;
+
+  opacity: 0;
+
+  animation:
+    architectureNodeIn .8s cubic-bezier(.22,1,.36,1) forwards,
+    architectureFloat 5s ease-in-out infinite;
+
+  transition:
+    transform .45s cubic-bezier(.22,1,.36,1),
+    border-color .35s ease,
+    box-shadow .35s ease;
+}
+
+
+/* Stagger */
+
+.architecture-node-01 {
+  animation-delay: .05s, 1s;
+}
+
+.architecture-node-02 {
+  animation-delay: .15s, 1.25s;
+}
+
+.architecture-node-03 {
+  animation-delay: .25s, 1.5s;
+}
+
+.architecture-node-04 {
+  animation-delay: .35s, 1.75s;
+}
+
+.architecture-node-05 {
+  animation-delay: .45s, 2s;
+}
+
+.architecture-node-06 {
+  animation-delay: .55s, 2.25s;
+}
+
+.architecture-node-07 {
+  animation-delay: .65s, 2.5s;
+}
+
+.architecture-node-08 {
+  animation-delay: .75s, 2.75s;
+}
+
+.architecture-node-09 {
+  animation-delay: .85s, 3s;
+}
+
+.architecture-node-10 {
+  animation-delay: .95s, 3.25s;
+}
+
+
+/* =========================================================
+   NODE GLOW
+   ========================================================= */
+
+.architecture-node::after {
+  content: "";
+
+  position: absolute;
+
+  width: 100px;
+  height: 100px;
+
+  top: -45px;
+  right: -35px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(110,231,255,.16),
+      transparent 70%
+    );
+
+  opacity: .5;
+
+  transition:
+    transform .5s ease,
+    opacity .5s ease;
+}
+
+
+/* =========================================================
+   NODE SHINE
+   ========================================================= */
+
+.architecture-node::before {
+  content: "";
+
+  position: absolute;
+
+  top: -100%;
+  left: -60%;
+
+  width: 45%;
+  height: 300%;
+
+  transform: rotate(22deg);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.12),
+      transparent
+    );
+
+  transition: left .8s ease;
+
+  z-index: 3;
+
+  pointer-events: none;
+}
+
+.architecture-node:hover::before {
+  left: 140%;
+}
+
+
+/* =========================================================
+   NODE CONTENT
+   ========================================================= */
+
+.architecture-node-number {
+  position: relative;
+
+  color: rgba(110,231,255,.55);
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: .14em;
+
+  margin-bottom: 14px;
+}
+
+.architecture-node-title {
+  position: relative;
+
+  color: #fff;
+
+  font-size: 14px;
+  font-weight: 850;
+
+  letter-spacing: .12em;
+
+  margin-bottom: 12px;
+
+  transition:
+    color .3s ease,
+    letter-spacing .3s ease;
+}
+
+.architecture-node p {
+  position: relative;
+
+  margin: 0;
+
+  color: rgba(255,255,255,.52);
+
+  font-size: 12px;
+
+  line-height: 1.7;
+
+  transition: color .3s ease;
+}
+
+
+/* =========================================================
+   NODE BOTTOM LINE
+   ========================================================= */
+
+.architecture-node-line {
+  position: absolute;
+
+  bottom: 0;
+  left: 0;
+
+  width: 0;
+  height: 2px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #6ee7ff,
+      transparent
+    );
+
+  transition: width .5s ease;
+}
+
+.architecture-node:hover .architecture-node-line {
+  width: 100%;
+}
+
+
+/* =========================================================
+   NODE HOVER
+   ========================================================= */
+
+.architecture-node:hover {
+  transform:
+    translateY(-12px)
+    scale(1.035);
+
+  border-color:
+    rgba(110,231,255,.35);
+
+  box-shadow:
+    0 25px 55px rgba(0,0,0,.3),
+    0 0 35px rgba(110,231,255,.09),
+    inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.architecture-node:hover::after {
+  transform: scale(1.8);
+
+  opacity: 1;
+}
+
+.architecture-node:hover .architecture-node-title {
+  color: #6ee7ff;
+
+  letter-spacing: .17em;
+}
+
+.architecture-node:hover p {
+  color: rgba(255,255,255,.78);
+}
+
+
+/* =========================================================
+   PRINCIPLES
+   ========================================================= */
+
+.architecture-principles {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns: repeat(5, 1fr);
+
+  gap: 16px;
+
+  margin-top: 28px;
+
+  z-index: 2;
+}
+
+
+.architecture-principle {
+  position: relative;
+
+  min-height: 180px;
+
+  padding: 22px;
+
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid rgba(255,255,255,.075);
+
+  border-radius: 18px;
+
+  background:
+    rgba(255,255,255,.025);
+
+  overflow: hidden;
+
+  opacity: 0;
+
+  animation:
+    principleReveal .75s cubic-bezier(.22,1,.36,1) forwards;
+
+  transition:
+    transform .4s cubic-bezier(.22,1,.36,1),
+    border-color .35s ease,
+    box-shadow .35s ease,
+    background .35s ease;
+}
+
+
+/* Stagger */
+
+.architecture-principle-01 {
+  animation-delay: .2s;
+}
+
+.architecture-principle-02 {
+  animation-delay: .3s;
+}
+
+.architecture-principle-03 {
+  animation-delay: .4s;
+}
+
+.architecture-principle-04 {
+  animation-delay: .5s;
+}
+
+.architecture-principle-05 {
+  animation-delay: .6s;
+}
+
+
+/* =========================================================
+   PRINCIPLE NUMBER
+   ========================================================= */
+
+.principle-number {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  margin-bottom: 18px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(110,231,255,.25);
+
+  color: #6ee7ff;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  background:
+    rgba(110,231,255,.035);
+
+  box-shadow:
+    0 0 0 0 rgba(110,231,255,.18);
+
+  animation:
+    principlePulse 3s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   PRINCIPLE CONTENT
+   ========================================================= */
+
+.principle-content span {
+  display: block;
+
+  margin-bottom: 9px;
+
+  color: #fff;
+
+  font-size: 17px;
+  font-weight: 750;
+
+  transition:
+    color .3s ease,
+    transform .3s ease;
+}
+
+.principle-content p {
+  margin: 0;
+
+  color: rgba(255,255,255,.54);
+
+  font-size: 12px;
+
+  line-height: 1.7;
+
+  transition: color .3s ease;
+}
+
+
+/* =========================================================
+   PRINCIPLE ICON
+   ========================================================= */
+
+.principle-icon {
+  position: absolute;
+
+  right: 18px;
+  bottom: 14px;
+
+  color: rgba(110,231,255,.18);
+
+  font-size: 30px;
+
+  transition:
+    transform .4s ease,
+    color .4s ease;
+}
+
+
+/* =========================================================
+   PRINCIPLE ACCENT
+   ========================================================= */
+
+.architecture-principle::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 15px;
+  right: 15px;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #6ee7ff,
+      transparent
+    );
+
+  transform: scaleX(.15);
+
+  opacity: .35;
+
+  transition:
+    transform .45s ease,
+    opacity .45s ease;
+}
+
+
+/* =========================================================
+   PRINCIPLE HOVER
+   ========================================================= */
+
+.architecture-principle:hover {
+  transform:
+    translateY(-10px)
+    scale(1.025);
+
+  border-color:
+    rgba(110,231,255,.3);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(110,231,255,.07),
+      rgba(255,255,255,.025)
+    );
+
+  box-shadow:
+    0 25px 55px rgba(0,0,0,.28),
+    0 0 30px rgba(110,231,255,.07);
+}
+
+.architecture-principle:hover::before {
+  transform: scaleX(1);
+
+  opacity: 1;
+}
+
+.architecture-principle:hover .principle-content span {
+  color: #6ee7ff;
+
+  transform: translateX(4px);
+}
+
+.architecture-principle:hover .principle-content p {
+  color: rgba(255,255,255,.76);
+}
+
+.architecture-principle:hover .principle-icon {
+  color: rgba(110,231,255,.65);
+
+  transform:
+    translateY(-5px)
+    rotate(8deg);
+}
+
+
+/* =========================================================
+   KEYFRAMES
+   ========================================================= */
+
+@keyframes architectureNodeIn {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(35px)
+      scale(.94);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+@keyframes architectureFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+
+}
+
+
+@keyframes principleReveal {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(30px)
+      scale(.96);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+@keyframes principlePulse {
+
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(110,231,255,.18);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 7px rgba(110,231,255,0);
+  }
+
+}
+
+
+@keyframes architectureFlowLine {
+
+  0% {
+    opacity: .25;
+
+    background-position: 0 0;
+  }
+
+  50% {
+    opacity: .8;
+  }
+
+  100% {
+    opacity: .25;
+
+    background-position: 300px 0;
+  }
+
+}
+
+
+@keyframes architectureArrow {
+
+  0%,
+  100% {
+    transform: translateX(0);
+    opacity: .65;
+  }
+
+  50% {
+    transform: translateX(5px);
+    opacity: 1;
+  }
+
+}
+
+
+@keyframes architectureAmbient {
+
+  0%,
+  100% {
+    transform:
+      translateX(-50%)
+      scale(1);
+  }
+
+  50% {
+    transform:
+      translateX(-50%)
+      scale(1.15);
+  }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+  .architecture-header {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .architecture-flow {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .architecture-flow::before {
+    display: none;
+  }
+
+  .architecture-principles {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+
+@media (max-width: 760px) {
+
+  .architecture-section {
+    padding: 80px 0;
+  }
+
+  .architecture-flow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .architecture-principles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+
+@media (max-width: 520px) {
+
+  .architecture-heading h2 {
+    font-size: 32px;
+  }
+
+  .architecture-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .architecture-principles {
+    grid-template-columns: 1fr;
+  }
+
+  .architecture-node {
+    min-height: 135px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .architecture-section::before,
+  .architecture-heading h2 span,
+  .architecture-node,
+  .architecture-principle,
+  .principle-number {
+    animation: none !important;
+  }
+
+  .architecture-node,
+  .architecture-principle {
+    opacity: 1;
+  }
+
+  .architecture-node,
+  .architecture-principle,
+  .architecture-node:hover,
+  .architecture-principle:hover {
+    transform: none;
+    transition: none;
+  }
+
+}
+/* =========================================================
+   ARCHITECTURE CAPABILITIES
+   Premium animated engineering cards
+   ========================================================= */
+
+.architecture-capabilities {
+  position: relative;
+
+  display: contents;
+  /*grid-template-columns: repeat(5, 1fr);*/
+
+  gap: 18px;
+
+  margin-top: 34px;
+
+  perspective: 1200px;
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.architecture-capability {
+  --accent: #6ee7ff;
+
+  position: relative;
+
+  min-height: 265px;
+
+  padding: 22px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255,255,255,.08);
+
+  border-radius: 22px;
+
+  background:
+    radial-gradient(
+      circle at 80% 15%,
+      rgba(110,231,255,.08),
+      transparent 35%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.065),
+      rgba(255,255,255,.018)
+    );
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  box-shadow:
+    0 18px 50px rgba(0,0,0,.20),
+    inset 0 1px 0 rgba(255,255,255,.06);
+
+  opacity: 0;
+
+  transform:
+    translateY(45px)
+    rotateX(8deg);
+
+  animation:
+    capabilityReveal .8s
+    cubic-bezier(.22,1,.36,1)
+    forwards;
+
+  transition:
+    transform .5s cubic-bezier(.22,1,.36,1),
+    border-color .35s ease,
+    box-shadow .4s ease,
+    background .4s ease;
+}
+
+
+/* =========================================================
+   STAGGERED ENTRANCE
+   ========================================================= */
+
+.capability-reusable {
+  animation-delay: .05s;
+}
+
+.capability-performant {
+  animation-delay: .18s;
+}
+
+.capability-searchable {
+  animation-delay: .31s;
+}
+
+.capability-maintainable {
+  animation-delay: .44s;
+}
+
+.capability-deployable {
+  animation-delay: .57s;
+}
+
+
+/* =========================================================
+   TOP META
+   ========================================================= */
+
+.capability-top {
+  position: relative;
+  z-index: 3;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.capability-index {
+  color: var(--accent);
+
+  font-size: 11px;
+  font-weight: 850;
+
+  letter-spacing: .15em;
+}
+
+.capability-status {
+  padding: 5px 8px;
+
+  border: 1px solid rgba(255,255,255,.07);
+
+  border-radius: 50px;
+
+  color: rgba(255,255,255,.38);
+
+  font-size: 8px;
+  font-weight: 750;
+
+  letter-spacing: .12em;
+
+  background: rgba(255,255,255,.025);
+}
+
+
+/* =========================================================
+   ORBITAL ICON
+   ========================================================= */
+
+.capability-orb {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 70px;
+  height: 70px;
+
+  margin: 25px 0 20px;
+}
+
+
+/* Main orbit */
+
+.capability-orbit {
+  position: absolute;
+
+  inset: 4px;
+
+  border: 1px solid
+    rgba(110,231,255,.20);
+
+  border-radius: 50%;
+
+  transform: rotate(-25deg);
+
+  animation:
+    capabilityOrbit 6s linear infinite;
+}
+
+
+/* Orbit second ring */
+
+.capability-orbit::before {
+  content: "";
+
+  position: absolute;
+
+  inset: -7px;
+
+  border: 1px dashed
+    rgba(110,231,255,.12);
+
+  border-radius: 50%;
+
+  animation:
+    capabilityOrbitReverse 9s linear infinite;
+}
+
+
+/* Orbit particle */
+
+.capability-orbit::after {
+  content: "";
+
+  position: absolute;
+
+  top: -4px;
+  left: 50%;
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--accent);
+
+  box-shadow:
+    0 0 12px var(--accent),
+    0 0 24px rgba(110,231,255,.5);
+
+  transform: translateX(-50%);
+}
+
+
+/* Core */
+
+.capability-core {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 45px;
+  height: 45px;
+
+  border: 1px solid
+    rgba(110,231,255,.25);
+
+  border-radius: 50%;
+
+  color: var(--accent);
+
+  font-size: 19px;
+  font-weight: 800;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(110,231,255,.14),
+      rgba(110,231,255,.02)
+    );
+
+  box-shadow:
+    0 0 20px rgba(110,231,255,.08),
+    inset 0 0 20px rgba(110,231,255,.04);
+
+  animation:
+    capabilityCorePulse 3s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+.capability-body {
+  position: relative;
+  z-index: 3;
+}
+
+.capability-title {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: #fff;
+
+  font-size: 18px;
+  font-weight: 800;
+
+  letter-spacing: -.02em;
+
+  transition:
+    color .3s ease,
+    transform .3s ease;
+}
+
+.capability-body p {
+  margin: 0;
+
+  max-width: 230px;
+
+  color: rgba(255,255,255,.52);
+
+  font-size: 12px;
+
+  line-height: 1.7;
+
+  transition: color .3s ease;
+}
+
+
+/* =========================================================
+   BOTTOM PROGRESS LINE
+   ========================================================= */
+
+.capability-progress {
+  position: absolute;
+
+  left: 22px;
+  right: 22px;
+  bottom: 20px;
+
+  height: 2px;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+
+  background:
+    rgba(255,255,255,.06);
+}
+
+.capability-progress span {
+  display: block;
+
+  width: 35%;
+  height: 100%;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--accent),
+      transparent
+    );
+
+  animation:
+    capabilityProgress 3s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   MOVING LIGHT
+   ========================================================= */
+
+.architecture-capability::before {
+  content: "";
+
+  position: absolute;
+
+  top: -50%;
+  left: -80%;
+
+  width: 45%;
+  height: 200%;
+
+  transform: rotate(25deg);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.12),
+      transparent
+    );
+
+  transition:
+    left .9s ease;
+
+  pointer-events: none;
+}
+
+.architecture-capability:hover::before {
+  left: 140%;
+}
+
+
+/* =========================================================
+   AMBIENT GLOW
+   ========================================================= */
+
+.architecture-capability::after {
+  content: "";
+
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  right: -100px;
+  top: -100px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(110,231,255,.13),
+      transparent 68%
+    );
+
+  opacity: .4;
+
+  transition:
+    transform .6s ease,
+    opacity .5s ease;
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.architecture-capability:hover {
+  transform:
+    translateY(-14px)
+    rotateX(0)
+    scale(1.025);
+
+  border-color:
+    rgba(110,231,255,.32);
+
+  background:
+    radial-gradient(
+      circle at 75% 15%,
+      rgba(110,231,255,.15),
+      transparent 40%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.075),
+      rgba(255,255,255,.025)
+    );
+
+  box-shadow:
+    0 30px 65px rgba(0,0,0,.32),
+    0 0 35px rgba(110,231,255,.08),
+    inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.architecture-capability:hover::after {
+  transform: scale(1.7);
+
+  opacity: .9;
+}
+
+.architecture-capability:hover .capability-title {
+  color: var(--accent);
+
+  transform: translateX(5px);
+}
+
+.architecture-capability:hover .capability-body p {
+  color: rgba(255,255,255,.76);
+}
+
+.architecture-capability:hover .capability-core {
+  box-shadow:
+    0 0 25px rgba(110,231,255,.16),
+    inset 0 0 25px rgba(110,231,255,.08);
+
+  transform: scale(1.08);
+}
+
+
+/* =========================================================
+   UNIQUE ACCENTS
+   ========================================================= */
+
+.capability-reusable {
+  --accent: #6ee7ff;
+}
+
+.capability-performant {
+  --accent: #8bffb0;
+}
+
+.capability-searchable {
+  --accent: #b7a7ff;
+}
+
+.capability-maintainable {
+  --accent: #ffd166;
+}
+
+.capability-deployable {
+  --accent: #ff8fab;
+}
+
+
+/* =========================================================
+   KEYFRAMES
+   ========================================================= */
+
+@keyframes capabilityReveal {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(45px)
+      rotateX(8deg)
+      scale(.96);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      rotateX(0)
+      scale(1);
+  }
+
+}
+
+
+@keyframes capabilityOrbit {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+
+@keyframes capabilityOrbitReverse {
+
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+
+}
+
+
+@keyframes capabilityCorePulse {
+
+  0%,
+  100% {
+    box-shadow:
+      0 0 15px rgba(110,231,255,.06),
+      inset 0 0 15px rgba(110,231,255,.03);
+  }
+
+  50% {
+    box-shadow:
+      0 0 28px rgba(110,231,255,.16),
+      inset 0 0 22px rgba(110,231,255,.08);
+  }
+
+}
+
+
+@keyframes capabilityProgress {
+
+  0% {
+    transform: translateX(-140%);
+  }
+
+  50% {
+    transform: translateX(200%);
+  }
+
+  100% {
+    transform: translateX(350%);
+  }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+  .architecture-capabilities {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+
+@media (max-width: 760px) {
+
+  .architecture-capabilities {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+
+@media (max-width: 520px) {
+
+  .architecture-capabilities {
+    grid-template-columns: 1fr;
+  }
+
+  .architecture-capability {
+    min-height: 235px;
+  }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .architecture-capability,
+  .capability-orbit,
+  .capability-orbit::before,
+  .capability-core,
+  .capability-progress span {
+    animation: none !important;
+  }
+
+  .architecture-capability {
+    opacity: 1;
+
+    transform: none;
+  }
+
+}
+  </style>
 </head>
 <body>
+<div class="progress" id="progress"></div><div class="noise"></div><div class="cursor-glow" id="glow"></div>
 
-<div class="ribbon">
-  <button class="tree-toggle" id="treeToggle" aria-label="Toggle content tree" aria-expanded="false">☰ Tree</button>
-  <div class="path">/sitecore/content/home/<strong>patil-basana</strong></div>
-  <input id="techSearch" type="text" placeholder="Search skills, tech…" aria-label="Search skills and technologies">
-  <button class="theme-btn" id="themeToggle" aria-label="Toggle color theme">◐</button>
-</div>
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="#top">Basan Patil<span>.</span>DEV</a>
+    <button class="menu" id="menu" aria-expanded="false" aria-label="Open navigation">☰</button>
+    <nav class="nav-links" id="nav">
+      <a href="#highlights">Highlights</a><a href="#skills">Stack</a><a href="#cases">Case Studies</a><a href="#experience">Experience</a><a href="#architecture">Architecture</a><a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
 
-<div class="hero-band">
-<div class="hero-inner" id="identity">
-  <div>
-    <div class="id-badge"><span class="pulse-dot"></span> <b>Final</b> — Published</div>
-    <h1 class="name">Patil Basana</h1>
-    <p class="role-type" aria-hidden="true"><span id="roleType"></span><span class="caret">&#9608;</span></p>
-    <p class="lead">Senior Sitecore / .NET Developer building scalable Sitecore XP/XM and SXA solutions — custom components, search, personalization, integrations, upgrades and migrations.</p>
-    <div class="id-grid">
-      <div class="field"><p class="fld-label">Location</p><div class="val">Bengaluru, India</div></div>
-      <div class="field"><p class="fld-label">Experience</p><div class="val"><span id="expCount">0</span>+ yrs, since 2014</div></div>
-      <div class="field"><p class="fld-label">Email</p><div class="val"><a href="mailto:Basana.developer@gmail.com">Basana.developer@gmail.com</a></div></div>
-      <div class="field"><p class="fld-label">Phone</p><div class="val"><a href="tel:+919902714075">+91 99027 14075</a></div></div>
+<main id="top">
+<section class="hero">
+  <div class="grid"></div>
+  <div class="container hero-content">
+    <div class="reveal">
+      <div class="eyebrow"><i class="dot"></i> Available for senior backend .Net/ Sitecore opportunities</div>
+      <h1>Senior <span class="gradient">Sitecore</span><br>&amp; .NET Developer.</h1>
+      <div class="roles"><span id="roles"></span><span aria-hidden="true">▌</span></div>
+      <p>Senior Sitecore developer with 6+ years of experience building scalable, high-performing web solutions on Sitecore XP/XM and SXA. Deep expertise in custom components, templates, workflows, search, personalization and third-party integrations using C#, ASP.NET MVC, SQL Server and REST APIs. Proven track record leading upgrades and migrations, improving performance, and translating Figma designs into reusable, author-friendly components. Comfortable with Agile delivery, CI/CD on Azure DevOps, and collaborating with cross-functional teams.</p>
+      <div class="actions">
+        <a class="btn primary" href="#contact">Let's connect →</a>
+        <a class="btn" href="#cases">View engineering work</a>
+      </div>
     </div>
-  </div>
-  <div class="pipe-wrap" aria-hidden="true">
-    <svg viewBox="0 0 420 260">
-      <path class="pipe-line" d="M60 30 V90"/>
-      <path class="pipe-line" d="M60 90 H360"/>
-      <path class="pipe-line" d="M360 90 V150"/>
-      <path class="pipe-line" d="M60 150 H360"/>
-      <path class="pipe-line" d="M60 150 V210"/>
-      <g class="pipe-node"><rect x="10" y="10" width="100" height="40" rx="5"/><text x="60" y="26" text-anchor="middle">HTTP Request</text><text class="sub" x="60" y="40" text-anchor="middle">GET /</text></g>
-      <g class="pipe-node"><rect x="10" y="70" width="100" height="40" rx="5"/><text x="60" y="86" text-anchor="middle">Layout</text><text class="sub" x="60" y="100" text-anchor="middle">Main.cshtml</text></g>
-      <g class="pipe-node"><rect x="310" y="70" width="100" height="40" rx="5"/><text x="360" y="86" text-anchor="middle">Placeholder</text><text class="sub" x="360" y="100" text-anchor="middle">content</text></g>
-      <g class="pipe-node"><rect x="310" y="130" width="100" height="40" rx="5"/><text x="360" y="146" text-anchor="middle">Rendering</text><text class="sub" x="360" y="160" text-anchor="middle">SXA component</text></g>
-      <g class="pipe-node hl"><rect x="10" y="130" width="100" height="40" rx="5"/><text x="60" y="150" text-anchor="middle">Datasource</text></g>
-      <g class="pipe-node"><rect x="10" y="190" width="100" height="40" rx="5"/><text x="60" y="206" text-anchor="middle">Response</text><text class="sub" x="60" y="220" text-anchor="middle">Rendered page</text></g>
-    </svg>
-  </div>
-</div>
-</div>
-
-<div class="shell">
-<nav class="tree" id="tree" aria-label="Section navigation">
-<ul>
-<li class="lvl0"><a href="#identity">Patil Basana</a>
-  <ul>
-    <li class="lvl1"><a href="#achievements">Achievements</a></li>
-    <li class="lvl1"><a href="#skills">Technical Skills</a></li>
-    <li class="lvl1"><a href="#experience">Employment History</a>
-      <ul>
-        <li class="lvl2"><a href="#job-consultant">Freelance Consultant</a></li>
-        <li class="lvl2"><a href="#job-epsilon">Epsilon India</a></li>
-        <li class="lvl2"><a href="#job-collabera">Collabera Technologies</a></li>
-        <li class="lvl2"><a href="#job-freelance1">Freelance (2018–21)</a></li>
-        <li class="lvl2"><a href="#job-hexagon">Hexagon Global IT</a></li>
-        <li class="lvl2"><a href="#job-mindtree">Mindtree</a></li>
-      </ul>
-    </li>
-    <li class="lvl1"><a href="#education">Education</a></li>
-    <li class="lvl1"><a href="#contact">Contact</a></li>
-  </ul>
-</li>
-</ul>
-</nav>
-
-<main>
-
-<section id="identity">
-  <h1 class="name">Patil Basana</h1>
-  <p class="lead">Senior Sitecore / .NET Developer building scalable Sitecore XP/XM and SXA solutions — custom components, search, personalization, integrations, upgrades and migrations. I turn Figma designs into components content authors can configure themselves.</p>
-  <div class="id-grid">
-    <div class="field"><p class="fld-label">Role</p><div class="val">Senior Sitecore / .NET Developer</div></div>
-    <div class="field"><p class="fld-label">Location</p><div class="val">Bengaluru, Karnataka, India</div></div>
-    <div class="field"><p class="fld-label">Experience</p><div class="val">6+ years, since 2014</div></div>
-    <div class="field"><p class="fld-label">Email</p><div class="val"><a href="mailto:Basana.developer@gmail.com">Basana.developer@gmail.com</a></div></div>
-    <div class="field"><p class="fld-label">Phone</p><div class="val"><a href="tel:+919902714075">+91 99027 14075</a></div></div>
+    <div class="terminal reveal">
+      <div class="terminal-bar"><i></i><i></i><i></i></div>
+      <pre><span class="comment">// portfolio.runtime</span>
+<span class="key">const</span> developer = {
+  focus: <span class="str">"Backend + Sitecore"</span>,
+  Languages & Web: <span class="str">"C#, ASP.NET MVC, .NET Framework / .NET Core, JavaScript, HTML, CSS / SCSS, REST APIs"</span>,
+  experience: <span class="num">"6+ years"</span>,
+  core: [<span class="str">"C#"</span>, <span class="str">".NET"</span>, <span class="str">"Sitecore"</span>],
+  search: [<span class="str">"Solr"</span>, <span class="str">"Azure Search"</span>,<span class="str">"Solr Search"</span>,
+  <span class="str">"Sitecore pipeline"</span>,
+  Frameworks & Tools: <span class="str">"Glass Mapper, Scriban, TDS, Unicorn, Entity Framework, ADO.NET, Dapper, Sitecore Rocks"</span>,
+           <span class="str">"Valier Search"</span>],
+  api: <span class="str">"REST / integrations"</span>,
+  Practices: <span class="str">"REST / integrations"</span>,
+  delivery: <span class="str">"Azure DevOps CI/CD"</span>,
+  mindset: <span class="str">"Helix / Habitat architecture, Agile, component-driven development, code reviews, Figma to component implementation"</span>
+};</pre>
+    </div>
   </div>
 </section>
 
-<section id="achievements">
-  <div class="sec-head"><h2>Achievements</h2><span class="count">9 items</span></div>
-  <div class="ach-grid">
-    <div class="ach-item reveal" style="--cat:var(--teal)"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg><h3>Upgrades &amp; migrations</h3><p>Led Sitecore version upgrades and content migrations with data integrity and minimal business disruption.</p></div>
-    <div class="ach-item reveal" style="--cat:var(--brass)"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><h3>Search &amp; performance</h3><p>Fixed a critical Valier Search indexing defect and applied caching and query optimisation for scalability.</p></div>
-    <div class="ach-item reveal" style="--cat:var(--teal)"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3H5a2 2 0 00-2 2v4m18 0V5a2 2 0 00-2-2h-4m0 18h4a2 2 0 002-2v-4M3 15v4a2 2 0 002 2h4"/></svg><h3>Integrations</h3><p>Delivered Lionbridge translation and Oracle Eloqua integrations for localisation and marketing automation.</p></div>
-    <div class="ach-item reveal" style="--cat:var(--brass)"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg><h3>Design-to-Sitecore delivery</h3><p>Turned Figma designs into responsive, pixel-accurate renderings validated across browsers and devices.</p></div>
-    <div class="ach-item reveal" style="--cat:var(--teal)"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7h-9m0 0l3-3m-3 3l3 3M4 17h9m0 0l-3 3m3-3l-3-3"/></svg><h3>Reusable components</h3><p>Built parameterised renderings, SXA rendering variants and promotional filters that cut configuration and development effort.</p></div>
-    <div class="ach-item reveal" style="--cat:var(--brass)"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg><h3>Search &amp; SEO</h3><p>Implemented Solr search with custom indexing, sitemap.xml optimisation and SXA template tuning.</p></div>
-    <div class="ach-item reveal" style="--cat:var(--teal)"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg><h3>Personalization &amp; governance</h3><p>Delivered GeoIP and rule-based personalization; customised approval workflows to stop draft content going live.</p></div>
-    <div class="ach-item reveal" style="--cat:var(--brass)"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a13 13 0 010 18a13 13 0 010-18"/></svg><h3>Multilingual &amp; discoverability</h3><p>Configured chained language fallback and built a category-tagged press article listing with dynamic filtering.</p></div>
-    <div class="ach-item reveal" style="--cat:var(--teal)"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.07 0l2.83-2.83a5 5 0 00-7.07-7.07L11.5 4.5M14 11a5 5 0 00-7.07 0L4.1 13.83a5 5 0 007.07 7.07L12.5 19.5"/></svg><h3>Content reliability</h3><p>Fixed the 301 Redirect module for Media Library requests, removing broken links.</p></div>
+<section id="highlights">
+  <div class="container">
+    <div class="section-head reveal"><div><div class="kicker">01 / engineering highlights</div><h2>Work that tells the story.</h2></div><p>Achievement highlights are based on the supplied portfolio/CV material; no artificial metrics have been added.</p></div>
+    <div class="stats reveal">
+      <div class="stat"><strong>6+</strong><span>Years of professional experience</span></div>
+      <div class="stat"><strong>Sitecore</strong><span>XP / XM / SXA delivery</span></div>
+      <div class="stat"><strong>Search</strong><span>Solr · Azure Search · Valier</span></div>
+      <div class="stat"><strong>Backend</strong><span>C# · MVC · .NET Core · APIs</span></div>
+    </div>
+    <div class="cards" style="margin-top:16px">
+      <article class="card reveal"><div class="icon">⌁</div><h3>Search & indexing</h3><p>Resolved a Valier Search indexing defect involving newly created multi-search-field items and worked with Solr/custom indexing.</p><div class="tag-list"><span class="tag">Valier Search</span><span class="tag">Solr</span><span class="tag">Indexing</span></div></article>
+      <article class="card reveal"><div class="icon">↗</div><h3>Platform modernization</h3><p>Led Sitecore upgrades, migrations and production troubleshooting with attention to data integrity, performance and business continuity.</p><div class="tag-list"><span class="tag">Migration</span><span class="tag">Upgrade</span><span class="tag">Performance</span></div></article>
+      <article class="card reveal"><div class="icon">◈</div><h3>Design → Sitecore</h3><p>Converted Figma designs into responsive Sitecore renderings, reusable components and flexible datasource-driven experiences.</p><div class="tag-list"><span class="tag">Figma</span><span class="tag">SXA</span><span class="tag">SCSS</span></div></article>
+      <article class="card reveal"><div class="icon">↔</div><h3>Enterprise integrations</h3><p>Built and supported REST/API integrations including translation, marketing automation, CRM and other third-party platforms.</p><div class="tag-list"><span class="tag">REST</span><span class="tag">Lionbridge</span><span class="tag">Eloqua</span></div></article>
+      <article class="card reveal"><div class="icon">⌕</div><h3>Content reliability</h3><p>Enhanced a 301 redirect module to correctly process Media Library requests and remove broken-link scenarios.</p><div class="tag-list"><span class="tag">C#</span><span class="tag">Sitecore pipeline</span><span class="tag">Media</span></div></article>
+      <article class="card reveal"><div class="icon">◎</div><h3>Personalization & governance</h3><p>Implemented GeoIP/rule-based personalization, multilingual fallback and approval workflows for controlled content delivery.</p><div class="tag-list"><span class="tag">GeoIP</span><span class="tag">Workflow</span><span class="tag">Multilingual</span></div></article>
+    </div>
   </div>
 </section>
 
 <section id="skills">
-  <div class="sec-head"><h2>Technical Skills</h2></div>
-  <div class="sk-row reveal" style="--cat:var(--teal)"><p class="fld-label"><span class="sk-dot"></span>Sitecore</p><div>
-    <span class="chip">XP / XM</span><span class="chip">SXA</span><span class="chip">Experience Editor</span><span class="chip">Content Editor</span><span class="chip">Forms / WFFM</span><span class="chip">Personalization</span><span class="chip">Analytics / DMS</span><span class="chip">Pipelines</span><span class="chip">Workflows</span>
-  </div></div>
-  <div class="sk-row reveal" style="--cat:var(--brass)"><p class="fld-label"><span class="sk-dot"></span>Languages &amp; web</p><div>
-    <span class="chip">C#</span><span class="chip">ASP.NET MVC</span><span class="chip">.NET Framework</span><span class="chip">.NET Core</span><span class="chip">JavaScript</span><span class="chip">HTML</span><span class="chip">CSS / SCSS</span><span class="chip">REST APIs</span>
-  </div></div>
-  <div class="sk-row reveal" style="--cat:var(--teal)"><p class="fld-label"><span class="sk-dot"></span>Frameworks &amp; tools</p><div>
-    <span class="chip">Glass Mapper</span><span class="chip">Scriban</span><span class="chip">TDS</span><span class="chip">Unicorn</span><span class="chip">Entity Framework</span><span class="chip">ADO.NET</span><span class="chip">Dapper</span><span class="chip">Sitecore Rocks</span>
-  </div></div>
-  <div class="sk-row reveal" style="--cat:var(--brass)"><p class="fld-label"><span class="sk-dot"></span>Search</p><div>
-    <span class="chip">Solr</span><span class="chip">Azure Search</span><span class="chip">Valier Search</span><span class="chip">Custom multi-field search</span>
-  </div></div>
-  <div class="sk-row reveal" style="--cat:var(--teal)"><p class="fld-label"><span class="sk-dot"></span>Integrations</p><div>
-    <span class="chip">Lionbridge</span><span class="chip">Oracle Eloqua</span><span class="chip">Sitecore Service Bus</span><span class="chip">Bazaar Voice</span><span class="chip">CRM platforms</span>
-  </div></div>
-  <div class="sk-row reveal" style="--cat:var(--brass)"><p class="fld-label"><span class="sk-dot"></span>DevOps &amp; cloud</p><div>
-    <span class="chip">Azure DevOps</span><span class="chip">CI/CD</span><span class="chip">TFS</span><span class="chip">Bitbucket</span><span class="chip">JIRA</span><span class="chip">Confluence</span>
-  </div></div>
-  <div class="sk-row reveal" style="--cat:var(--teal)"><p class="fld-label"><span class="sk-dot"></span>Database</p><div>
-    <span class="chip">MS SQL Server</span><span class="chip">Schema design</span><span class="chip">Stored procedures</span><span class="chip">Query optimisation</span>
-  </div></div>
-  <div class="sk-row reveal" style="--cat:var(--brass)"><p class="fld-label"><span class="sk-dot"></span>Practices</p><div>
-    <span class="chip">Helix / Habitat</span><span class="chip">Agile</span><span class="chip">Component-driven dev</span><span class="chip">Code reviews</span>
-  </div></div>
+  <div class="container">
+    <div class="section-head reveal"><div><div class="kicker">02 / technical stack</div><h2>Backend-first, platform-aware.</h2></div><p>Prioritized around the technologies explicitly provided: C#, ASP.NET MVC, .NET Framework/Core, JavaScript, web UI, REST, indexing and search.</p></div>
+    <div class="skill-grid">
+      <div class="skill reveal"><div class="skill-head"><b>C# / .NET</b><span>CORE</span></div><div class="bar"><i style="--w:94%"></i></div><div class="tag-list"><span class="tag">C#</span><span class="tag">.NET Framework</span><span class="tag">.NET Core</span><span class="tag">ASP.NET MVC</span></div></div>
+      <div class="skill reveal"><div class="skill-head"><b>Sitecore</b><span>PLATFORM</span></div><div class="bar"><i style="--w:96%"></i></div><div class="tag-list"><span class="tag">XP / XM</span><span class="tag">SXA</span><span class="tag">Pipelines</span><span class="tag">Workflows</span><span class="tag">Forms / WFFM</span><span class="tag">Personalization</span></div></div>
+      <div class="skill reveal"><div class="skill-head"><b>Search / indexing</b><span>SPECIALTY</span></div><div class="bar"><i style="--w:92%"></i></div><div class="tag-list"><span class="tag">Solr</span><span class="tag">Azure Search</span><span class="tag">Valier Search</span><span class="tag">Multi-field search</span></div></div>
+      <div class="skill reveal"><div class="skill-head"><b>Web / frontend</b><span>DELIVERY</span></div><div class="bar"><i style="--w:86%"></i></div><div class="tag-list"><span class="tag">JavaScript</span><span class="tag">HTML</span><span class="tag">CSS / SCSS</span><span class="tag">Figma → UI</span></div></div>
+      <div class="skill reveal"><div class="skill-head"><b>APIs / integration</b><span>BACKEND</span></div><div class="bar"><i style="--w:90%"></i></div><div class="tag-list"><span class="tag">REST APIs</span><span class="tag">CRM</span><span class="tag">Marketing automation</span></div></div>
+      <div class="skill reveal"><div class="skill-head"><b>Delivery / cloud</b><span>DEVOPS</span></div><div class="bar"><i style="--w:84%"></i></div><div class="tag-list"><span class="tag">Azure DevOps</span><span class="tag">CI/CD</span><span class="tag">TFS</span><span class="tag">Bitbucket</span></div></div>
+    </div>
+  </div>
 </section>
 
+<section id="cases">
+  <div class="container">
+    <div class="section-head reveal"><div><div class="kicker">03 / selected case studies</div><h2>Featured Sitecore Engineering Work.</h2></div><p>Building scalable Sitecore solutions that solve real production problems.</p></div>
+    <article class="case reveal">
+      <div><span class="case-number">CASE / 01</span><h3>Search indexing reliability</h3><p>Investigated a multi-search-field indexing defect where newly created content was not reaching the expected Sitecore search index.</p></div>
+      <div class="case-body"><div class="mini"><b>FOCUS</b><p>Sitecore indexing pipeline, dependency resolution, Solr and Valier Search behaviour.</p></div><div class="mini"><b>OUTCOME</b><p>Restored automatic indexing behaviour for the affected content scenario and reduced the need for manual reindex intervention.</p></div></div>
+    </article>
+    <article class="case reveal">
+      <div><span class="case-number">CASE / 02</span><h3>Media-aware redirects</h3><p>Extended a custom 301 redirect solution to account for Media Library requests instead of treating every target as a normal Sitecore item URL.</p></div>
+      <div class="case-body"><div class="mini"><b>FOCUS</b><p>C# pipeline processing, MediaManager, URL resolution and request handling.</p></div><div class="mini"><b>OUTCOME</b><p>Improved redirect handling for media assets and eliminated a class of broken-link failures.</p></div></div>
+    </article>
+    <article class="case reveal">
+      <div><span class="case-number">CASE / 03</span><h3>Figma to reusable Sitecore UI</h3><p>Implemented responsive designs as reusable Sitecore renderings with datasource templates, parameterisation and SXA/Scriban patterns.</p></div>
+      <div class="case-body"><div class="mini"><b>FOCUS</b><p>HTML, SCSS, JavaScript, Figma, Sitecore MVC, SXA and Experience Editor.</p></div><div class="mini"><b>OUTCOME</b><p>Created maintainable authorable components while preserving responsive visual fidelity across devices.</p></div></div>
+    </article>
+  </div>
+</section>
+
+<section id="architecture" class="architecture-section">
+  <div class="container">
+
+    <!-- Section Header -->
+    <div class="architecture-header reveal">
+
+      <div class="architecture-heading">
+
+        <div class="architecture-kicker">
+          04 / architecture mindset
+        </div>
+
+        <h2>
+          Content
+          <span>→</span>
+          Experience
+          <span>→</span>
+          Search
+          <span>→</span>
+          Integration
+          <span>→</span>
+          Delivery.
+        </h2>
+
+      </div>
+
+      <p class="architecture-intro">
+        Enterprise Sitecore architecture built around reusable components,
+        scalable search, performance, integrations and reliable delivery.
+      </p>
+
+    </div>
+
+
+    <!-- Architecture Flow -->
+    <div class="architecture-flow reveal">
+
+      <!-- 01 -->
+      <div class="architecture-node architecture-node-01">
+        <div class="architecture-node-number">01</div>
+
+        <div class="architecture-node-title">
+          EDGE
+        </div>
+
+        <p>
+          CDN / Delivery<br>
+          Cached content
+        </p>
+
+        <div class="architecture-node-line"></div>
+      </div>
+
+
+      <!-- 02 -->
+      <div class="architecture-node architecture-node-02">
+        <div class="architecture-node-number">02</div>
+
+        <div class="architecture-node-title">
+          CM / CD
+        </div>
+
+        <p>
+          Sitecore XP<br>
+          Authoring · Publishing
+        </p>
+
+        <div class="architecture-node-line"></div>
+      </div>
+
+
+      <!-- 03 -->
+      <div class="architecture-node architecture-node-03">
+        <div class="architecture-node-number">03</div>
+
+        <div class="architecture-node-title">
+          SXA
+        </div>
+
+        <p>
+          Components<br>
+          Scriban · Renderings
+        </p>
+
+        <div class="architecture-node-line"></div>
+      </div>
+
+
+      <!-- 04 -->
+      <div class="architecture-node architecture-node-04">
+        <div class="architecture-node-number">04</div>
+
+        <div class="architecture-node-title">
+          CONTENT
+        </div>
+
+        <p>
+          Templates · Datasources<br>
+          Media · Multilingual
+        </p>
+
+        <div class="architecture-node-line"></div>
+      </div>
+
+
+      <!-- 05 -->
+      <div class="architecture-node architecture-node-05">
+        <div class="architecture-node-number">05</div>
+
+        <div class="architecture-node-title">
+          SOLR
+        </div>
+
+        <p>
+          Search &amp; Indexing<br>
+          Multi-field Search
+        </p>
+
+        <div class="architecture-node-line"></div>
+      </div>
+
+
+      <!-- 06 -->
+      <div class="architecture-node architecture-node-06">
+        <div class="architecture-node-number">06</div>
+
+        <div class="architecture-node-title">
+          API
+        </div>
+
+        <p>
+          C# / .NET<br>
+          REST Integrations
+        </p>
+
+        <div class="architecture-node-line"></div>
+      </div>
+
+
+      <!-- 07 -->
+      <div class="architecture-node architecture-node-07">
+        <div class="architecture-node-number">07</div>
+
+        <div class="architecture-node-title">
+          DATA
+        </div>
+
+        <p>
+          SQL Server<br>
+          Caching · Optimisation
+        </p>
+
+        <div class="architecture-node-line"></div>
+      </div>
+
+
+      <!-- 08 -->
+      <div class="architecture-node architecture-node-08">
+        <div class="architecture-node-number">08</div>
+
+        <div class="architecture-node-title">
+          INTEGRATION
+        </div>
+
+        <p>
+          Lionbridge · Eloqua<br>
+          CRM / Marketing
+        </p>
+
+        <div class="architecture-node-line"></div>
+      </div>
+
+
+      <!-- 09 -->
+      <div class="architecture-node architecture-node-09">
+        <div class="architecture-node-number">09</div>
+
+        <div class="architecture-node-title">
+          OBS
+        </div>
+
+        <p>
+          Monitoring<br>
+          Diagnostics · Support
+        </p>
+
+        <div class="architecture-node-line"></div>
+      </div>
+
+
+      <!-- 10 -->
+      <div class="architecture-node architecture-node-10">
+        <div class="architecture-node-number">10</div>
+
+        <div class="architecture-node-title">
+          CI/CD
+        </div>
+
+        <p>
+          Azure DevOps<br>
+          Build · Test · Deploy
+        </p>
+
+        <div class="architecture-node-line"></div>
+      </div>
+<!-- Architecture Principles -->
+   <div class="architecture-capabilities">
+
+  <!-- 01 -->
+  <div class="architecture-capability capability-reusable">
+
+    <div class="capability-top">
+      <div class="capability-index">01</div>
+      <div class="capability-status">ARCHITECTURE</div>
+    </div>
+
+    <div class="capability-orb">
+      <div class="capability-orbit"></div>
+      <div class="capability-core">↗</div>
+    </div>
+
+    <div class="capability-body">
+      <span class="capability-title">Reusable</span>
+
+      <p>
+        SXA components, rendering variants and
+        datasource-driven architecture.
+      </p>
+    </div>
+
+    <div class="capability-progress">
+      <span></span>
+    </div>
+
+  </div>
+
+
+  <!-- 02 -->
+  <div class="architecture-capability capability-performant">
+
+    <div class="capability-top">
+      <div class="capability-index">02</div>
+      <div class="capability-status">PERFORMANCE</div>
+    </div>
+
+    <div class="capability-orb">
+      <div class="capability-orbit"></div>
+      <div class="capability-core">⚡</div>
+    </div>
+
+    <div class="capability-body">
+      <span class="capability-title">Performant</span>
+
+      <p>
+        Caching, query optimisation and
+        efficient indexing.
+      </p>
+    </div>
+
+    <div class="capability-progress">
+      <span></span>
+    </div>
+
+  </div>
+
+
+  <!-- 03 -->
+  <div class="architecture-capability capability-searchable">
+
+    <div class="capability-top">
+      <div class="capability-index">03</div>
+      <div class="capability-status">SEARCH</div>
+    </div>
+
+    <div class="capability-orb">
+      <div class="capability-orbit"></div>
+      <div class="capability-core">◈</div>
+    </div>
+
+    <div class="capability-body">
+      <span class="capability-title">Searchable</span>
+
+      <p>
+        Solr, Valier Search, custom indexing
+        and multi-field search.
+      </p>
+    </div>
+
+    <div class="capability-progress">
+      <span></span>
+    </div>
+
+  </div>
+
+
+  <!-- 04 -->
+  <div class="architecture-capability capability-maintainable">
+
+    <div class="capability-top">
+      <div class="capability-index">04</div>
+      <div class="capability-status">ENGINEERING</div>
+    </div>
+
+    <div class="capability-orb">
+      <div class="capability-orbit"></div>
+      <div class="capability-core">◌</div>
+    </div>
+
+    <div class="capability-body">
+      <span class="capability-title">Maintainable</span>
+
+      <p>
+        C#/.NET services, separation of concerns
+        and reusable architecture.
+      </p>
+    </div>
+
+    <div class="capability-progress">
+      <span></span>
+    </div>
+
+  </div>
+
+
+  <!-- 05 -->
+  <div class="architecture-capability capability-deployable">
+
+    <div class="capability-top">
+      <div class="capability-index">05</div>
+      <div class="capability-status">DELIVERY</div>
+    </div>
+
+    <div class="capability-orb">
+      <div class="capability-orbit"></div>
+      <div class="capability-core">✓</div>
+    </div>
+
+    <div class="capability-body">
+      <span class="capability-title">Deployable</span>
+
+      <p>
+        Azure DevOps CI/CD with testing and
+        controlled production releases.
+      </p>
+    </div>
+
+    <div class="capability-progress">
+      <span></span>
+    </div>
+
+  </div>
+
+</div>
+  </div>
+    </div>
+
+
+    
+</section>
 <section id="experience">
-  <div class="sec-head"><h2>Employment History</h2><span class="count">6 items</span></div>
+  <div class="container">
+    <div class="section-head reveal"><div><div class="kicker">05 / experience</div><h2>Career timeline.</h2></div><p>Condensed from the supplied portfolio source.</p></div>
+    <div class="timeline">
+      <article class="job reveal"><div class="job-top"><div><h3>Freelance Sitecore Consultant</h3><strong>Independent</strong></div><time>2025 – Present</time></div><ul><li>Sitecore architecture, scalability, performance, security, SEO and production support.</li><li>Upgrades, migrations, custom components, integrations and .NET Core services.</li><li>CI/CD, code reviews, estimation and developer mentoring.</li><li>Collaborate with stakeholders, content authors, UX, QA and DevOps teams; document designs and APIs, run knowledge-transfer sessions and mentor developers; evaluate new Sitecore and .NET features and recommend adoption aligned to business goals.</li></ul></article>
+      <article class="job reveal"><div class="job-top"><div><h3>Sitecore Developer</h3><strong>Epsilon India</strong></div><time>Jul 2022 – Oct 2024</time></div><ul><li>Enhanced the 301 Redirect module to correctly handle Media Library requests, eliminating broken links.</li>
+<li>Diagnosed and fixed a critical Valier Search defect so new items in multi-search fields are indexed automatically.</li>
+<li>Designed and deployed SXA solutions with custom components and Scriban templates; built parameterised renderings for reusable components.</li>
+<li>Integrated Lionbridge Translation and Oracle Eloqua for localisation and marketing automation.</li>
+<li>Improved performance and scalability through caching strategies and query optimisation.</li>
+<li>Led Sitecore upgrades and content migrations; improved SEO and authoring efficiency via SXA template and layout optimisation.</li>
 
-  <article class="job reveal" id="job-consultant">
-    <div class="job-head"><h3>Freelance Sitecore Consultant</h3><span class="co">Independent</span><span class="dur">2025 – Present</span></div>
-    <ul>
-      <li>Provide end-to-end Sitecore consulting for enterprise and mid-sized clients: architecture, scalability, performance, security, SEO and best practices.</li>
-      <li>Lead version upgrades, migrations and platform modernisation, with production support for complex issues.</li>
-      <li>Design custom components, renderings, templates, workflows and Experience Editor features.</li>
-      <li>Integrate Sitecore with third-party systems, APIs, CRM and marketing automation tools.</li>
-      <li>Build C# and .NET Core services with Entity Framework, ADO.NET or Dapper; optimise SQL Server queries.</li>
-      <li>Set up CI/CD pipelines, run code reviews, estimate effort and mentor developers.</li>
-    </ul>
-    <p class="fld-label">Technologies</p>
-    <div><span class="chip">Sitecore XP</span><span class="chip">SXA</span><span class="chip">C#</span><span class="chip">.NET Core</span><span class="chip">REST APIs</span><span class="chip">SQL Server</span><span class="chip">Azure DevOps</span></div>
-  </article>
+<b>Working with Figma Designs</b>
 
-  <article class="job reveal" id="job-epsilon">
-    <div class="job-head"><h3>Sitecore Developer</h3><span class="co">Epsilon India</span><span class="dur">Jul 2022 – Oct 2024</span></div>
-    <ul>
-      <li>Enhanced the 301 Redirect module to handle Media Library requests, eliminating broken links.</li>
-      <li>Diagnosed and fixed a critical Valier Search defect so new items in multi-search fields are indexed automatically.</li>
-      <li>Designed and deployed SXA solutions with custom components and Scriban templates, plus parameterised renderings.</li>
-      <li>Integrated Lionbridge Translation and Oracle Eloqua for localisation and marketing automation.</li>
-      <li>Improved performance with caching and query optimisation; led upgrades and content migrations.</li>
-      <li>Implemented Figma designs as responsive Sitecore renderings with flexible data source templates, validated across browsers and devices.</li>
-    </ul>
-    <p class="fld-label">Technologies</p>
-    <div><span class="chip">Sitecore XP</span><span class="chip">SXA</span><span class="chip">Scriban</span><span class="chip">Valier Search</span><span class="chip">Solr</span><span class="chip">Figma</span><span class="chip">HTML</span><span class="chip">SCSS</span><span class="chip">JavaScript</span></div>
-  </article>
-
-  <article class="job reveal" id="job-collabera">
-    <div class="job-head"><h3>Sitecore Developer</h3><span class="co">Collabera Technologies</span><span class="dur">Dec 2021 – May 2022</span></div>
-    <ul>
-      <li>Built a dynamic press article listing with category tagging and filtering, improving content discoverability.</li>
-      <li>Implemented parameterised renderings so authors can configure components in Experience Editor.</li>
-      <li>Configured chained language fallback at item and template level for multilingual delivery.</li>
-    </ul>
-    <p class="fld-label">Technologies</p>
-    <div><span class="chip">Sitecore</span><span class="chip">Experience Editor</span><span class="chip">C#</span><span class="chip">ASP.NET MVC</span></div>
-  </article>
-
-  <article class="job reveal" id="job-freelance1">
-    <div class="job-head"><h3>Freelance Sitecore Developer</h3><span class="co">Independent</span><span class="dur">2018 – 2021</span></div>
-    <ul>
-      <li>Delivered end-to-end Sitecore projects independently across varied client requirements.</li>
-      <li>Managed templates, layouts, renderings, workflows, publishing and media library assets.</li>
-      <li>Applied SEO best practices and supported A/B testing and personalization with Sitecore XP.</li>
-    </ul>
-    <p class="fld-label">Technologies</p>
-    <div><span class="chip">Sitecore XP</span><span class="chip">Experience Editor</span><span class="chip">Workflows</span><span class="chip">Personalization</span><span class="chip">SEO</span></div>
-  </article>
-
-  <article class="job reveal" id="job-hexagon">
-    <div class="job-head"><h3>Sitecore Developer</h3><span class="co">Hexagon Global IT Services</span><span class="dur">Mar 2017 – Jan 2018</span></div>
-    <ul>
-      <li>Engineered scalable Sitecore MVC applications with Glass Mapper; managed branching and releases in TFS.</li>
-      <li>Built custom SXA components and rendering variants for flexible, client-specific layouts.</li>
-      <li>Implemented Solr enterprise search with custom indexing and sitemap.xml optimisation.</li>
-      <li>Delivered GeoIP and rule-based personalization; customised approval workflows.</li>
-      <li>Led upgrades, pipeline customisations and analytics setup.</li>
-    </ul>
-    <p class="fld-label">Technologies</p>
-    <div><span class="chip">Sitecore MVC</span><span class="chip">SXA</span><span class="chip">Glass Mapper</span><span class="chip">Solr</span><span class="chip">TFS</span><span class="chip">Analytics</span></div>
-  </article>
-
-  <article class="job reveal" id="job-mindtree">
-    <div class="job-head"><h3>Sitecore Developer</h3><span class="co">Mindtree</span><span class="dur">Jun 2014 – Mar 2016</span></div>
-    <ul>
-      <li>Built Sitecore applications in C# and ASP.NET: data templates, branch templates, layouts and sub-layouts.</li>
-      <li>Configured Sitecore DMS, caching and session management; debugged with Sitecore Rocks.</li>
-      <li>Collaborated on Bazaar Voice and e-commerce integrations.</li>
-    </ul>
-    <p class="fld-label">Technologies</p>
-    <div><span class="chip">Sitecore</span><span class="chip">C#</span><span class="chip">ASP.NET</span><span class="chip">DMS</span><span class="chip">Sitecore Rocks</span><span class="chip">Visual Studio</span></div>
-  </article>
-</section>
-
-<section id="education">
-  <div class="sec-head"><h2>Education</h2></div>
-  <div class="edu-item"><span><strong>Master of Computer Applications (MCA)</strong> — BITM, Bellary</span><span class="yr">2010 – 2013</span></div>
-  <div class="edu-item"><span><strong>Bachelor of Computer Applications (BCA)</strong> — KET College</span><span class="yr">2007 – 2010</span></div>
+<li>Implemented Figma designs as responsive Sitecore renderings with flexible data source templates, validated across browsers and devices.</li>
+<li>As a Sitecore developer, I use the Figma designs as the reference for implementing Sitecore renderings, component structure, responsive behaviours, typography, spacing, colours, and interactions. I map the reusable Figma components to Sitecore renderings and define appropriate data source templates and fields so that content authors can manage the components through Sitecore. After implementation, I compare the Sitecore page with the Figma design and perform responsive and cross-browser validation.</li>
+<li>Integrating Sitecore content such as images, links, rich text, and structured content with the components.</li>
+<li>Testing the implementation against the Figma design and fixing pixel-level UI differences, spacing, alignment, typography, and responsive issues.</li>
+<li>Supporting content authors by ensuring components are flexible, reusable, and easy to configure in Sitecore.</li>
+<li>Testing the components across different browsers and devices before deployment.</li>
+<li>Implementing the frontend using HTML, CSS/SCSS, JavaScript, and the project's frontend framework, while maintaining the visual consistency of the Figma design.</li>
+<li>Making components responsive according to the desktop, tablet, and mobile designs provided in Figma.</li>
+</ul></article>
+      <article class="job reveal"><div class="job-top"><div><h3>Sitecore Developer</h3><strong>Collabera Technologies</strong></div><time>Dec 2021 – May 2022</time></div><ul><li>Built a dynamic press article listing with category tagging and filtering, improving content discoverability.</li>
+<li>Implemented parameterised renderings so authors can configure components in Experience Editor.</li>
+<li>Delivered functional and UI enhancements against business change requests.</li></ul></article>
+      <article class="job reveal"><div class="job-top"><div><h3>Freelance Sitecore Developer</h3><strong>Independent</strong></div><time>2018 – 2021</time></div><ul><li>End-to-end Sitecore delivery across templates, renderings, workflows, publishing, SEO and personalization.</li></ul></article>
+      <article class="job reveal"><div class="job-top"><div><h3>Sitecore Developer</h3><strong>Hexagon Global IT Services</strong></div><time>Mar 2017 – Jan 2018</time></div><ul><li>Scalable Sitecore MVC, Glass Mapper, SXA, Solr search, sitemap optimisation, personalization and workflows.</li></ul></article>
+      <article class="job reveal"><div class="job-top"><div><h3>Sitecore Developer</h3><strong>Mindtree</strong></div><time>Jun 2014 – Mar 2016</time></div><ul><li>Sitecore applications in C# and ASP.NET, templates, layouts, caching, session management and integrations.</li></ul></article>
+<li>Configured chained language fallback at item and template level for multilingual delivery.</li>
+    </div>
+  </div>
 </section>
 
 <section id="contact">
-  <div class="sec-head"><h2>Contact</h2></div>
-  <p class="lead">Looking for Sitecore help with architecture, upgrades or component development? Send a note.</p>
-  <div class="contact-actions">
-    <a class="btn primary" href="mailto:Basana.developer@gmail.com">Basana.developer@gmail.com</a>
-    <a class="btn" href="tel:+919902714075">+91 </a>
+  <div class="container">
+    <div class="contact reveal">
+      <div class="kicker">06 / contact</div>
+      <h2>Let's build something scalable.</h2>
+      <p style="color:var(--muted);max-width:650px">Open to senior Sitecore, backend .NET and platform engineering opportunities where architecture, search, integrations and performance matter.</p>
+      <div class="actions"><a class="btn primary" href="mailto:Basana.developer@gmail.com">Email me</a><a class="btn" href="tel:+919902714075">+91 99027 14075</a></div>
+    </div>
+    <footer><span>Basanagouda Patil · Senior Sitecore / .NET Developer</span><span>Bengaluru, India · 6+ years</span></footer>
   </div>
-  <footer>/sitecore/content/home/patil-basana — Bengaluru, India</footer>
 </section>
-
 </main>
-</div>
 
 <script>
-(function(){
-  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Typewriter role cycler
-  var roles=['Senior Sitecore Developer','SXA Specialist','.NET / C# Engineer','Solr Search Expert','Figma-to-Sitecore Builder'];
-  var roleEl=document.getElementById('roleType');
-  if(roleEl){
-    if(reduced){ roleEl.textContent=roles[0]; }
-    else{
-      var ri=0,ci=0,deleting=false;
-      function tick(){
-        var word=roles[ri];
-        if(!deleting){
-          ci++; roleEl.textContent=word.slice(0,ci);
-          if(ci===word.length){ deleting=true; setTimeout(tick,1400); return; }
-        } else {
-          ci--; roleEl.textContent=word.slice(0,ci);
-          if(ci===0){ deleting=false; ri=(ri+1)%roles.length; }
-        }
-        setTimeout(tick, deleting?35:65);
-      }
-      tick();
-    }
+  // Mobile navigation
+  const menu = document.querySelector('#menu'), nav = document.querySelector('#nav');
+  menu.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    menu.setAttribute('aria-expanded', open);
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+  // Lightweight scroll progress
+  const progress = document.querySelector('#progress');
+  const updateProgress = () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    progress.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+  };
+  addEventListener('scroll', updateProgress, {passive:true});
+  updateProgress();
+
+  // Accessible typewriter
+  const roleEl = document.querySelector('#roles');
+  const roles = ['Senior Sitecore Developer','Backend .NET Engineer','C# / ASP.NET Specialist','Search & Indexing Engineer','SXA / Sitecore Developer'];
+  if (reduce) roleEl.textContent = roles[0];
+  else {
+    let r=0, i=0, deleting=false;
+    const tick = () => {
+      const word=roles[r];
+      i += deleting ? -1 : 1;
+      roleEl.textContent=word.slice(0,i);
+      if(!deleting && i===word.length){deleting=true;setTimeout(tick,1300);return}
+      if(deleting && i===0){deleting=false;r=(r+1)%roles.length}
+      setTimeout(tick,deleting?32:58);
+    };
+    tick();
   }
 
-  // Experience count-up
-  var expEl=document.getElementById('expCount');
-  if(expEl){
-    if(reduced){ expEl.textContent='6'; }
-    else{
-      var target=6,cur=0;
-      var step=setInterval(function(){
-        cur++; expEl.textContent=cur;
-        if(cur>=target) clearInterval(step);
-      },140);
-    }
-  }
-
-  // Scroll-reveal with stagger
-  var revealEls=document.querySelectorAll('.reveal');
-  if('IntersectionObserver' in window && !reduced){
-    var seen=0;
-    var ro=new IntersectionObserver(function(entries,obs){
-      entries.forEach(function(en){
-        if(en.isIntersecting){
-          var idx=Array.prototype.indexOf.call(revealEls,en.target);
-          en.target.style.transitionDelay=((idx%4)*70)+'ms';
-          en.target.classList.add('in');
-          obs.unobserve(en.target);
-        }
+  // Scroll reveal: IntersectionObserver avoids scroll-handler animation work.
+  const items=document.querySelectorAll('.reveal');
+  if(reduce || !('IntersectionObserver' in window)) items.forEach(x=>x.classList.add('in'));
+  else {
+    const io=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
       });
-    },{threshold:0.12});
-    Array.prototype.forEach.call(revealEls, function(el){ ro.observe(el); });
-    // Safety net: if the observer never fires (older/odd engines), reveal everything anyway.
-    setTimeout(function(){
-      Array.prototype.forEach.call(revealEls, function(el){ el.classList.add('in'); });
-    }, 2000);
-  } else {
-    Array.prototype.forEach.call(revealEls, function(el){ el.classList.add('in'); });
+    },{threshold:.12});
+    items.forEach(x=>io.observe(x));
   }
 
-  var tree=document.getElementById('tree'),toggle=document.getElementById('treeToggle');
-  toggle.addEventListener('click',function(){
-    var open=tree.classList.toggle('open');
-    toggle.setAttribute('aria-expanded',open);
-  });
-  Array.prototype.forEach.call(tree.querySelectorAll('a'), function(a){
-    a.addEventListener('click',function(){ tree.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); });
-  });
-
-  var themeBtn=document.getElementById('themeToggle');
-  themeBtn.addEventListener('click',function(){
-    var cur=document.documentElement.getAttribute('data-theme');
-    var next=cur==='dark'?'light':(cur==='light'?'':'dark');
-    if(next===''){document.documentElement.removeAttribute('data-theme');}
-    else{document.documentElement.setAttribute('data-theme',next);}
-  });
-
-  var search=document.getElementById('techSearch');
-  search.addEventListener('input',function(){
-    var q=search.value.trim().toLowerCase();
-    Array.prototype.forEach.call(document.querySelectorAll('.chip'), function(c){
-      c.classList.toggle('dim', q.length>0 && c.textContent.toLowerCase().indexOf(q)===-1);
-    });
-  });
-
-  var links=Array.prototype.slice.call(tree.querySelectorAll('a'));
-  var targets=links.map(function(l){return document.querySelector(l.getAttribute('href'));}).filter(Boolean);
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){
-          var id='#'+e.target.id;
-          links.forEach(function(l){l.classList.toggle('active', l.getAttribute('href')===id);});
-        }
-      });
-    },{rootMargin:'-40% 0px -50% 0px'});
-    Array.prototype.forEach.call(targets, function(t){io.observe(t);});
+  // Pointer glow uses requestAnimationFrame to avoid layout thrashing.
+  const glow=document.querySelector('#glow');
+  if(!reduce && innerWidth >= 900){
+    let x=innerWidth/2,y=innerHeight/2,tx=x,ty=y,raf=0;
+    addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY;if(!raf)raf=requestAnimationFrame(draw)},{passive:true});
+    function draw(){x+=(tx-x)*.12;y+=(ty-y)*.12;glow.style.left=x+'px';glow.style.top=y+'px';raf=0}
   }
 })();
 </script>
