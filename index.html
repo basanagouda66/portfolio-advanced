@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Patil Basana — Senior Sitecore / .NET Developer</title>
+<meta name="description" content="Senior Sitecore and .NET developer in Bengaluru: SXA, XP/XM, Solr search, upgrades, migrations, integrations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16232B; --paper:#EDE7D8; --field:#F7F3E8; --line:#CFC6AE;
+  --brass:#8C6415; --teal:#1F4A46; --mute:#5B655F;
+  --serif:'Fraunces',Georgia,serif; --sans:'Public Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#EAE4D4; --paper:#101816; --field:#152220; --line:#2B3835;
+    --brass:#D2A44A; --teal:#5FB3A6; --mute:#8FA097;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#EAE4D4; --paper:#101816; --field:#152220; --line:#2B3835;
+  --brass:#D2A44A; --teal:#5FB3A6; --mute:#8FA097;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.65 var(--sans);transition:background .3s,color .3s}
+a{color:var(--teal)}
+h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;color:var(--ink)}
+.fld-label{font:13px/1.4 var(--sans);color:var(--mute);margin:0 0 5px}
+.chip{display:inline-block;font:12px/1.6 var(--mono);color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:3px;padding:2px 9px;margin:0 6px 6px 0;transition:opacity .2s}
+.chip.dim{opacity:.25}
+
+/* ribbon */
+.ribbon{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:18px;padding:10px 20px;background:var(--paper);border-bottom:1px solid var(--line)}
+.ribbon .path{font:12px var(--mono);color:var(--mute);overflow:auto;white-space:nowrap;flex:1;min-width:0}
+.ribbon input{font:13px var(--sans);border:1px solid var(--line);background:var(--field);color:var(--ink);border-radius:4px;padding:7px 10px;width:200px;max-width:40vw}
+.ribbon input::placeholder{color:var(--mute)}
+.tree-toggle{display:none;background:none;border:1px solid var(--line);color:var(--ink);border-radius:4px;padding:6px 10px;font:13px var(--sans);cursor:pointer}
+.theme-btn{background:none;border:1px solid var(--line);color:var(--ink);border-radius:4px;padding:6px 10px;font:16px var(--sans);cursor:pointer;line-height:1}
+
+/* layout */
+.shell{display:grid;grid-template-columns:250px minmax(0,1fr);max-width:1180px;margin:0 auto}
+nav.tree{padding:22px 10px 60px 22px;font:13px/2 var(--sans);border-right:1px solid var(--line);align-self:start;position:sticky;top:49px;max-height:calc(100vh - 49px);overflow:auto}
+nav.tree ul{list-style:none;margin:0;padding:0}
+nav.tree li{position:relative}
+nav.tree .lvl0>a{font-weight:600;font-family:var(--serif);font-size:15px}
+nav.tree .lvl1{padding-left:16px;border-left:1px solid var(--line);margin-left:5px}
+nav.tree .lvl2{padding-left:16px;border-left:1px solid var(--line);margin-left:5px;font-size:12.5px;color:var(--mute)}
+nav.tree a{display:block;color:var(--ink);text-decoration:none;padding:1px 6px;border-radius:3px;border-left:2px solid transparent}
+nav.tree .lvl2 a{color:var(--mute)}
+nav.tree a:hover,nav.tree a:focus-visible{background:var(--field)}
+nav.tree a.active{border-left:2px solid var(--brass);color:var(--brass);font-weight:600}
+nav.tree a:focus-visible{outline:2px solid var(--teal);outline-offset:1px}
+
+main{padding:40px 44px 90px;min-width:0}
+section{padding:44px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0;padding-top:0}
+.sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:22px}
+.sec-head h2{font-size:1.55rem}
+.sec-head .count{font:12px var(--mono);color:var(--mute)}
+
+/* identity hero */
+.id-badge{display:inline-flex;align-items:center;gap:6px;font:12px var(--mono);color:var(--teal);border:1px solid var(--line);border-radius:20px;padding:4px 12px;margin-bottom:18px}
+.id-badge b{color:var(--teal)}
+h1.name{font-size:clamp(2.3rem,6vw,3.6rem);letter-spacing:-.01em;opacity:0;transform:translateY(6px);animation:reveal .5s ease-out .1s forwards}
+@keyframes reveal{to{opacity:1;transform:none}}
+.id-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:26px}
+.field{background:var(--field);border:1px solid var(--line);border-radius:5px;padding:14px 16px}
+.field .val{font-size:15px}
+.field .val a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+.field .val a:hover{border-color:var(--teal);color:var(--teal)}
+.lead{max-width:66ch;font-size:1.05rem;margin-top:16px;color:var(--ink)}
+
+/* achievements */
+.ach-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ach-item{background:var(--field);border:1px solid var(--line);border-radius:5px;padding:16px 18px}
+.ach-item h3{font-size:1rem;font-family:var(--sans);font-weight:700;margin-bottom:6px}
+.ach-item p{margin:0;color:var(--mute);font-size:14px}
+
+/* skills */
+.sk-row{display:grid;grid-template-columns:190px 1fr;gap:18px;padding:13px 0;border-bottom:1px solid var(--line)}
+.sk-row:first-child{border-top:1px solid var(--line)}
+.sk-row .fld-label{margin:0}
+
+/* jobs */
+.job{padding:26px 0;border-bottom:1px solid var(--line)}
+.job:last-child{border-bottom:0}
+.job-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:baseline;margin-bottom:14px}
+.job-head h3{font-size:1.3rem}
+.job-head .co{font-family:var(--sans);font-weight:600;color:var(--teal);font-size:15px}
+.job-head .dur{font:12px var(--mono);color:var(--mute)}
+.job ul{margin:0 0 14px;padding-left:20px}
+.job li{margin-bottom:6px;max-width:74ch}
+
+/* education / contact */
+.edu-item{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
+.edu-item:first-child{border-top:1px solid var(--line)}
+.edu-item .yr{color:var(--mute);font:13px var(--mono)}
+.contact-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.btn{padding:11px 20px;border:1px solid var(--ink);border-radius:5px;color:var(--ink);text-decoration:none;font-size:14px;font-weight:600}
+.btn.primary{background:var(--ink);color:var(--paper)}
+footer{padding:30px 0 0;color:var(--mute);font:12px var(--mono)}
+
+@media (max-width:860px){
+  .shell{display:block}
+  .tree-toggle{display:inline-block}
+  nav.tree{position:fixed;top:49px;left:0;right:0;bottom:0;background:var(--paper);z-index:30;display:none;border-right:0}
+  nav.tree.open{display:block}
+  main{padding:28px 20px 70px}
+  .ach-grid{grid-template-columns:1fr}
+  .sk-row{grid-template-columns:1fr}
+  .ribbon input{width:120px}
+}
+</style>
+</head>
+<body>
+
+<div class="ribbon">
+  <button class="tree-toggle" id="treeToggle" aria-label="Toggle content tree" aria-expanded="false">☰ Tree</button>
+  <div class="path">/sitecore/content/home/<strong>patil-basana</strong></div>
+  <input id="techSearch" type="text" placeholder="Search skills, tech…" aria-label="Search skills and technologies">
+  <button class="theme-btn" id="themeToggle" aria-label="Toggle color theme">◐</button>
+</div>
+
+<div class="shell">
+<nav class="tree" id="tree" aria-label="Section navigation">
+<ul>
+<li class="lvl0"><a href="#identity">Patil Basana</a>
+  <ul>
+    <li class="lvl1"><a href="#achievements">Achievements</a></li>
+    <li class="lvl1"><a href="#skills">Technical Skills</a></li>
+    <li class="lvl1"><a href="#experience">Employment History</a>
+      <ul>
+        <li class="lvl2"><a href="#job-consultant">Freelance Consultant</a></li>
+        <li class="lvl2"><a href="#job-epsilon">Epsilon India</a></li>
+        <li class="lvl2"><a href="#job-collabera">Collabera Technologies</a></li>
+        <li class="lvl2"><a href="#job-freelance1">Freelance (2018–21)</a></li>
+        <li class="lvl2"><a href="#job-hexagon">Hexagon Global IT</a></li>
+        <li class="lvl2"><a href="#job-mindtree">Mindtree</a></li>
+      </ul>
+    </li>
+    <li class="lvl1"><a href="#education">Education</a></li>
+    <li class="lvl1"><a href="#contact">Contact</a></li>
+  </ul>
+</li>
+</ul>
+</nav>
+
+<main>
+
+<section id="identity">
+  <h1 class="name">Patil Basana</h1>
+  <p class="lead">Senior Sitecore / .NET Developer building scalable Sitecore XP/XM and SXA solutions — custom components, search, personalization, integrations, upgrades and migrations. I turn Figma designs into components content authors can configure themselves.</p>
+  <div class="id-grid">
+    <div class="field"><p class="fld-label">Role</p><div class="val">Senior Sitecore / .NET Developer</div></div>
+    <div class="field"><p class="fld-label">Location</p><div class="val">Bengaluru, Karnataka, India</div></div>
+    <div class="field"><p class="fld-label">Experience</p><div class="val">6+ years, since 2014</div></div>
+    <div class="field"><p class="fld-label">Email</p><div class="val"><a href="mailto:Basana.developer@gmail.com">Basana.developer@gmail.com</a></div></div>
+    <div class="field"><p class="fld-label">Phone</p><div class="val"><a href="tel:+919902714075">+91 99027 14075</a></div></div>
+  </div>
+</section>
+
+<section id="achievements">
+  <div class="sec-head"><h2>Achievements</h2><span class="count">9 items</span></div>
+  <div class="ach-grid">
+    <div class="ach-item"><h3>Upgrades &amp; migrations</h3><p>Led Sitecore version upgrades and content migrations with data integrity and minimal business disruption.</p></div>
+    <div class="ach-item"><h3>Search &amp; performance</h3><p>Fixed a critical Valier Search indexing defect and applied caching and query optimisation for scalability.</p></div>
+    <div class="ach-item"><h3>Integrations</h3><p>Delivered Lionbridge translation and Oracle Eloqua integrations for localisation and marketing automation.</p></div>
+    <div class="ach-item"><h3>Design-to-Sitecore delivery</h3><p>Turned Figma designs into responsive, pixel-accurate renderings validated across browsers and devices.</p></div>
+    <div class="ach-item"><h3>Reusable components</h3><p>Built parameterised renderings, SXA rendering variants and promotional filters that cut configuration and development effort.</p></div>
+    <div class="ach-item"><h3>Search &amp; SEO</h3><p>Implemented Solr search with custom indexing, sitemap.xml optimisation and SXA template tuning.</p></div>
+    <div class="ach-item"><h3>Personalization &amp; governance</h3><p>Delivered GeoIP and rule-based personalization; customised approval workflows to stop draft content going live.</p></div>
+    <div class="ach-item"><h3>Multilingual &amp; discoverability</h3><p>Configured chained language fallback and built a category-tagged press article listing with dynamic filtering.</p></div>
+    <div class="ach-item"><h3>Content reliability</h3><p>Fixed the 301 Redirect module for Media Library requests, removing broken links.</p></div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="sec-head"><h2>Technical Skills</h2></div>
+  <div class="sk-row"><p class="fld-label">Sitecore</p><div>
+    <span class="chip">XP / XM</span><span class="chip">SXA</span><span class="chip">Experience Editor</span><span class="chip">Content Editor</span><span class="chip">Forms / WFFM</span><span class="chip">Personalization</span><span class="chip">Analytics / DMS</span><span class="chip">Pipelines</span><span class="chip">Workflows</span>
+  </div></div>
+  <div class="sk-row"><p class="fld-label">Languages &amp; web</p><div>
+    <span class="chip">C#</span><span class="chip">ASP.NET MVC</span><span class="chip">.NET Framework</span><span class="chip">.NET Core</span><span class="chip">JavaScript</span><span class="chip">HTML</span><span class="chip">CSS / SCSS</span><span class="chip">REST APIs</span>
+  </div></div>
+  <div class="sk-row"><p class="fld-label">Frameworks &amp; tools</p><div>
+    <span class="chip">Glass Mapper</span><span class="chip">Scriban</span><span class="chip">TDS</span><span class="chip">Unicorn</span><span class="chip">Entity Framework</span><span class="chip">ADO.NET</span><span class="chip">Dapper</span><span class="chip">Sitecore Rocks</span>
+  </div></div>
+  <div class="sk-row"><p class="fld-label">Search</p><div>
+    <span class="chip">Solr</span><span class="chip">Azure Search</span><span class="chip">Valier Search</span><span class="chip">Custom multi-field search</span>
+  </div></div>
+  <div class="sk-row"><p class="fld-label">Integrations</p><div>
+    <span class="chip">Lionbridge</span><span class="chip">Oracle Eloqua</span><span class="chip">Sitecore Service Bus</span><span class="chip">Bazaar Voice</span><span class="chip">CRM platforms</span>
+  </div></div>
+  <div class="sk-row"><p class="fld-label">DevOps &amp; cloud</p><div>
+    <span class="chip">Azure DevOps</span><span class="chip">CI/CD</span><span class="chip">TFS</span><span class="chip">Bitbucket</span><span class="chip">JIRA</span><span class="chip">Confluence</span>
+  </div></div>
+  <div class="sk-row"><p class="fld-label">Database</p><div>
+    <span class="chip">MS SQL Server</span><span class="chip">Schema design</span><span class="chip">Stored procedures</span><span class="chip">Query optimisation</span>
+  </div></div>
+  <div class="sk-row"><p class="fld-label">Practices</p><div>
+    <span class="chip">Helix / Habitat</span><span class="chip">Agile</span><span class="chip">Component-driven dev</span><span class="chip">Code reviews</span>
+  </div></div>
+</section>
+
+<section id="experience">
+  <div class="sec-head"><h2>Employment History</h2><span class="count">6 items</span></div>
+
+  <article class="job" id="job-consultant">
+    <div class="job-head"><h3>Freelance Sitecore Consultant</h3><span class="co">Independent</span><span class="dur">2025 – Present</span></div>
+    <ul>
+      <li>Provide end-to-end Sitecore consulting for enterprise and mid-sized clients: architecture, scalability, performance, security, SEO and best practices.</li>
+      <li>Lead version upgrades, migrations and platform modernisation, with production support for complex issues.</li>
+      <li>Design custom components, renderings, templates, workflows and Experience Editor features.</li>
+      <li>Integrate Sitecore with third-party systems, APIs, CRM and marketing automation tools.</li>
+      <li>Build C# and .NET Core services with Entity Framework, ADO.NET or Dapper; optimise SQL Server queries.</li>
+      <li>Set up CI/CD pipelines, run code reviews, estimate effort and mentor developers.</li>
+    </ul>
+    <p class="fld-label">Technologies</p>
+    <div><span class="chip">Sitecore XP</span><span class="chip">SXA</span><span class="chip">C#</span><span class="chip">.NET Core</span><span class="chip">REST APIs</span><span class="chip">SQL Server</span><span class="chip">Azure DevOps</span></div>
+  </article>
+
+  <article class="job" id="job-epsilon">
+    <div class="job-head"><h3>Sitecore Developer</h3><span class="co">Epsilon India</span><span class="dur">Jul 2022 – Oct 2024</span></div>
+    <ul>
+      <li>Enhanced the 301 Redirect module to handle Media Library requests, eliminating broken links.</li>
+      <li>Diagnosed and fixed a critical Valier Search defect so new items in multi-search fields are indexed automatically.</li>
+      <li>Designed and deployed SXA solutions with custom components and Scriban templates, plus parameterised renderings.</li>
+      <li>Integrated Lionbridge Translation and Oracle Eloqua for localisation and marketing automation.</li>
+      <li>Improved performance with caching and query optimisation; led upgrades and content migrations.</li>
+      <li>Implemented Figma designs as responsive Sitecore renderings with flexible data source templates, validated across browsers and devices.</li>
+    </ul>
+    <p class="fld-label">Technologies</p>
+    <div><span class="chip">Sitecore XP</span><span class="chip">SXA</span><span class="chip">Scriban</span><span class="chip">Valier Search</span><span class="chip">Solr</span><span class="chip">Figma</span><span class="chip">HTML</span><span class="chip">SCSS</span><span class="chip">JavaScript</span></div>
+  </article>
+
+  <article class="job" id="job-collabera">
+    <div class="job-head"><h3>Sitecore Developer</h3><span class="co">Collabera Technologies</span><span class="dur">Dec 2021 – May 2022</span></div>
+    <ul>
+      <li>Built a dynamic press article listing with category tagging and filtering, improving content discoverability.</li>
+      <li>Implemented parameterised renderings so authors can configure components in Experience Editor.</li>
+      <li>Configured chained language fallback at item and template level for multilingual delivery.</li>
+    </ul>
+    <p class="fld-label">Technologies</p>
+    <div><span class="chip">Sitecore</span><span class="chip">Experience Editor</span><span class="chip">C#</span><span class="chip">ASP.NET MVC</span></div>
+  </article>
+
+  <article class="job" id="job-freelance1">
+    <div class="job-head"><h3>Freelance Sitecore Developer</h3><span class="co">Independent</span><span class="dur">2018 – 2021</span></div>
+    <ul>
+      <li>Delivered end-to-end Sitecore projects independently across varied client requirements.</li>
+      <li>Managed templates, layouts, renderings, workflows, publishing and media library assets.</li>
+      <li>Applied SEO best practices and supported A/B testing and personalization with Sitecore XP.</li>
+    </ul>
+    <p class="fld-label">Technologies</p>
+    <div><span class="chip">Sitecore XP</span><span class="chip">Experience Editor</span><span class="chip">Workflows</span><span class="chip">Personalization</span><span class="chip">SEO</span></div>
+  </article>
+
+  <article class="job" id="job-hexagon">
+    <div class="job-head"><h3>Sitecore Developer</h3><span class="co">Hexagon Global IT Services</span><span class="dur">Mar 2017 – Jan 2018</span></div>
+    <ul>
+      <li>Engineered scalable Sitecore MVC applications with Glass Mapper; managed branching and releases in TFS.</li>
+      <li>Built custom SXA components and rendering variants for flexible, client-specific layouts.</li>
+      <li>Implemented Solr enterprise search with custom indexing and sitemap.xml optimisation.</li>
+      <li>Delivered GeoIP and rule-based personalization; customised approval workflows.</li>
+      <li>Led upgrades, pipeline customisations and analytics setup.</li>
+    </ul>
+    <p class="fld-label">Technologies</p>
+    <div><span class="chip">Sitecore MVC</span><span class="chip">SXA</span><span class="chip">Glass Mapper</span><span class="chip">Solr</span><span class="chip">TFS</span><span class="chip">Analytics</span></div>
+  </article>
+
+  <article class="job" id="job-mindtree">
+    <div class="job-head"><h3>Sitecore Developer</h3><span class="co">Mindtree</span><span class="dur">Jun 2014 – Mar 2016</span></div>
+    <ul>
+      <li>Built Sitecore applications in C# and ASP.NET: data templates, branch templates, layouts and sub-layouts.</li>
+      <li>Configured Sitecore DMS, caching and session management; debugged with Sitecore Rocks.</li>
+      <li>Collaborated on Bazaar Voice and e-commerce integrations.</li>
+    </ul>
+    <p class="fld-label">Technologies</p>
+    <div><span class="chip">Sitecore</span><span class="chip">C#</span><span class="chip">ASP.NET</span><span class="chip">DMS</span><span class="chip">Sitecore Rocks</span><span class="chip">Visual Studio</span></div>
+  </article>
+</section>
+
+<section id="education">
+  <div class="sec-head"><h2>Education</h2></div>
+  <div class="edu-item"><span><strong>Master of Computer Applications (MCA)</strong> — BITM, Bellary</span><span class="yr">2010 – 2013</span></div>
+  <div class="edu-item"><span><strong>Bachelor of Computer Applications (BCA)</strong> — KET College</span><span class="yr">2007 – 2010</span></div>
+</section>
+
+<section id="contact">
+  <div class="sec-head"><h2>Contact</h2></div>
+  <p class="lead">Looking for Sitecore help with architecture, upgrades or component development? Send a note.</p>
+  <div class="contact-actions">
+    <a class="btn primary" href="mailto:Basana.developer@gmail.com">Basana.developer@gmail.com</a>
+    <a class="btn" href="tel:+919902714075">+91 99027 14075</a>
+  </div>
+  <footer>/sitecore/content/home/patil-basana — Bengaluru, India</footer>
+</section>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var tree=document.getElementById('tree'),toggle=document.getElementById('treeToggle');
+  toggle.addEventListener('click',function(){
+    var open=tree.classList.toggle('open');
+    toggle.setAttribute('aria-expanded',open);
+  });
+  tree.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){ tree.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); });
+  });
+
+  var themeBtn=document.getElementById('themeToggle');
+  themeBtn.addEventListener('click',function(){
+    var cur=document.documentElement.getAttribute('data-theme');
+    var next=cur==='dark'?'light':(cur==='light'?'':'dark');
+    if(next===''){document.documentElement.removeAttribute('data-theme');}
+    else{document.documentElement.setAttribute('data-theme',next);}
+  });
+
+  var search=document.getElementById('techSearch');
+  search.addEventListener('input',function(){
+    var q=search.value.trim().toLowerCase();
+    document.querySelectorAll('.chip').forEach(function(c){
+      c.classList.toggle('dim', q.length>0 && c.textContent.toLowerCase().indexOf(q)===-1);
+    });
+  });
+
+  var links=Array.prototype.slice.call(tree.querySelectorAll('a'));
+  var targets=links.map(function(l){return document.querySelector(l.getAttribute('href'));}).filter(Boolean);
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var id='#'+e.target.id;
+          links.forEach(function(l){l.classList.toggle('active', l.getAttribute('href')===id);});
+        }
+      });
+    },{rootMargin:'-40% 0px -50% 0px'});
+    targets.forEach(function(t){io.observe(t);});
+  }
+})();
+</script>
+</body>
+</html>
